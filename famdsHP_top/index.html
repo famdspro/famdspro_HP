@@ -1,0 +1,1887 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>FAMFSプロダクション｜大阪発アイドル事務所</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+/* ============================================
+   RESET & BASE
+============================================ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{font-size:16px}
+body{
+  font-family:'Noto Sans JP',sans-serif;
+  color:#fff;
+  background:#1a0535;
+  overflow-x:hidden;
+}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+
+/* ============================================
+   セクション1：ロゴ帯 + ヒーロー
+============================================ */
+
+/* ── ロゴ帯 ── */
+.logo-bar{
+  width:100%;
+  background:rgba(15,4,36,.92);
+  border-bottom:1px solid rgba(255,255,255,.1);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:7px 24px;
+  position:fixed;
+  top:0;left:0;right:0;
+  z-index:100;
+}
+.logo-bar img{
+  height:32px;
+  width:auto;
+  object-fit:contain;
+  filter:brightness(0) invert(1);
+}
+
+/* ── ヒーロー ── */
+.hero{
+  position:relative;
+  min-height:100svh;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+  background:linear-gradient(
+    125deg,
+    #1a0535 0%,
+    #3b0f7a 35%,
+    #7b2fa0 60%,
+    #c0348e 80%,
+    #e8458a 100%
+  );
+}
+
+/* 背景装飾：左下から広がる光彩 */
+.hero::before{
+  content:'';
+  position:absolute;
+  bottom:-10%;left:-5%;
+  width:70%;height:80%;
+  background:radial-gradient(ellipse,rgba(255,230,0,.10) 0%,transparent 65%);
+  pointer-events:none;
+}
+
+/* 右側グラデーションフェード（写真エリアとのつなぎ） */
+.hero::after{
+  content:'';
+  position:absolute;
+  top:0;right:0;
+  width:50%;height:100%;
+  background:linear-gradient(to left, rgba(180,60,160,.18) 0%, transparent 80%);
+  pointer-events:none;
+}
+
+/* 人物写真エリア（右側） */
+.hero-photo{
+  position:absolute;
+  right:0;top:0;
+  width:48%;
+  height:100%;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+}
+.hero-photo img{
+  height:100%;
+  width:100%;
+  object-fit:cover;
+  object-position:top center;
+  opacity:.88;
+}
+.hero-photo-placeholder{
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:12px;
+  background:linear-gradient(160deg,rgba(120,50,180,.3),rgba(220,80,150,.25));
+  border-left:1px dashed rgba(255,255,255,.15);
+  color:rgba(255,255,255,.35);
+  font-size:13px;
+  letter-spacing:.06em;
+}
+.hero-photo-placeholder i{font-size:40px;opacity:.4}
+
+/* テキストエリアに薄暗いオーバーレイ（左側） */
+.hero-overlay{
+  position:absolute;
+  top:0;left:0;
+  width:60%;height:100%;
+  background:linear-gradient(to right,rgba(15,4,36,.72) 0%,rgba(15,4,36,.42) 60%,transparent 100%);
+  pointer-events:none;
+  z-index:1;
+}
+
+/* コンテンツラッパー */
+.hero-content{
+  position:relative;
+  z-index:2;
+  padding:100px 56px 80px;
+  max-width:620px;
+}
+
+/* キャッチ上部（小） */
+.hero-eyebrow{
+  font-size:13px;
+  font-weight:500;
+  letter-spacing:.16em;
+  color:rgba(255,255,255,.7);
+  margin-bottom:20px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.hero-eyebrow::before{
+  content:'';
+  display:block;
+  width:28px;height:1px;
+  background:rgba(255,255,255,.45);
+  flex-shrink:0;
+}
+
+/* メインキャッチ「夢を、現実に。」 */
+.hero-catch-main{
+  font-size:clamp(36px,5.5vw,64px);
+  font-weight:900;
+  font-family:'Zen Maru Gothic',sans-serif;
+  line-height:1.2;
+  letter-spacing:.04em;
+  margin-bottom:28px;
+  color:#fff;
+  text-shadow:0 2px 24px rgba(0,0,0,.35);
+}
+.hero-catch-main .line1{
+  display:block;
+  background:linear-gradient(90deg,#ffe600,#ffb300);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+/* サブキャッチ */
+.hero-catch-sub{
+  font-size:clamp(14px,1.8vw,18px);
+  font-weight:500;
+  line-height:1.9;
+  color:rgba(255,255,255,.88);
+  text-shadow:0 1px 8px rgba(0,0,0,.4);
+  border-left:3px solid rgba(255,230,0,.6);
+  padding-left:16px;
+}
+
+/* スクロール誘導 */
+.hero-scroll{
+  position:absolute;
+  bottom:32px;left:56px;
+  z-index:2;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:rgba(255,255,255,.45);
+  font-size:10px;
+  letter-spacing:.16em;
+}
+.hero-scroll::after{
+  content:'';
+  display:block;
+  width:48px;height:1px;
+  background:rgba(255,255,255,.3);
+}
+
+/* ============================================
+   セクション2：オーディション告知メインビジュアル
+============================================ */
+.audition-mv{
+  position:relative;
+  background:#FFE000;
+  overflow:hidden;
+  color:#1a0535;
+  padding-bottom:0;
+}
+
+/* Layer1：背景装飾（CSSシェイプ） */
+.audition-mv-deco{
+  position:absolute;inset:0;
+  pointer-events:none;
+  overflow:hidden;
+}
+/* 右上の大円 */
+.audition-mv-deco::before{
+  content:'';
+  position:absolute;
+  top:-18%;right:-10%;
+  width:55vw;height:55vw;
+  border-radius:50%;
+  background:radial-gradient(circle,#FF8C00 0%,#FF4FA0 60%,transparent 80%);
+  opacity:.55;
+}
+/* 左下の中円 */
+.audition-mv-deco::after{
+  content:'';
+  position:absolute;
+  bottom:-12%;left:-6%;
+  width:36vw;height:36vw;
+  border-radius:50%;
+  background:radial-gradient(circle,#ff4fa0 0%,#ffe000 70%,transparent 90%);
+  opacity:.35;
+}
+/* 散らばる装飾円（SVGで生成） */
+.deco-circle{
+  position:absolute;
+  border-radius:50%;
+  opacity:.22;
+}
+.deco-circle.c1{width:60px;height:60px;background:#FF8C00;top:8%;left:5%}
+.deco-circle.c2{width:32px;height:32px;background:#ff4fa0;top:22%;left:14%}
+.deco-circle.c3{width:90px;height:90px;background:#FF8C00;bottom:10%;right:8%}
+.deco-circle.c4{width:20px;height:20px;background:#1a0535;top:55%;left:3%}
+
+/* ★スター装飾 */
+.deco-star{
+  position:absolute;
+  font-size:22px;
+  color:#FF8C00;
+  opacity:.6;
+  font-family:'Noto Sans JP',sans-serif;
+  line-height:1;
+}
+.deco-star.s1{top:6%;left:32%;font-size:28px}
+.deco-star.s2{top:18%;right:36%;font-size:18px}
+.deco-star.s3{bottom:12%;left:42%;font-size:24px}
+.deco-star.s4{bottom:20%;right:28%;font-size:16px;color:#1a0535;opacity:.3}
+
+/* 斜め帯（上端） */
+.audition-mv-stripe{
+  position:absolute;
+  top:0;left:0;right:0;
+  height:6px;
+  background:repeating-linear-gradient(
+    90deg,
+    #FF8C00 0px,#FF8C00 20px,
+    #FFE000 20px,#FFE000 40px,
+    #ff4fa0 40px,#ff4fa0 60px,
+    #FFE000 60px,#FFE000 80px
+  );
+}
+
+/* Layer2 + Layer3：コンテンツ */
+.audition-mv-inner{
+  position:relative;
+  z-index:2;
+  display:grid;
+  grid-template-columns:1fr 360px;
+  align-items:center;
+  min-height:520px;
+  max-width:1080px;
+  margin:0 auto;
+  padding:48px 48px 48px 56px;
+  gap:24px;
+}
+
+/* ── 左：テキスト層 ── */
+.audition-mv-left{
+  display:flex;flex-direction:column;align-items:flex-start;
+}
+
+/* バッジ */
+.audition-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:#1a0535;
+  color:#FFE000;
+  font-size:12px;font-weight:900;
+  letter-spacing:.1em;
+  padding:6px 18px;
+  border-radius:999px;
+  margin-bottom:20px;
+}
+.audition-badge::before{content:'★';font-size:13px}
+
+/* メイン見出し */
+.audition-title{
+  font-family:'Zen Maru Gothic',sans-serif;
+  font-weight:900;
+  font-size:clamp(44px,7vw,88px);
+  line-height:1.05;
+  letter-spacing:-.01em;
+  color:#1a0535;
+  text-shadow:4px 4px 0 rgba(255,140,0,.35);
+  margin-bottom:24px;
+}
+.audition-title .t-pink{
+  color:#d42a74;
+  display:block;
+  font-size:.68em;
+  letter-spacing:.04em;
+}
+
+/* 応募期間 */
+.audition-date-wrap{
+  display:flex;
+  align-items:center;
+  gap:0;
+  margin-bottom:28px;
+}
+.audition-date-label{
+  background:#1a0535;
+  color:#FFE000;
+  font-size:11px;font-weight:700;
+  letter-spacing:.08em;
+  padding:5px 12px;
+  border-radius:4px 0 0 4px;
+  white-space:nowrap;
+}
+.audition-date-body{
+  background:#FF8C00;
+  color:#fff;
+  font-family:'Zen Maru Gothic',sans-serif;
+  font-size:clamp(18px,2.8vw,26px);
+  font-weight:900;
+  letter-spacing:.06em;
+  padding:5px 20px;
+  border-radius:0 4px 4px 0;
+}
+
+/* 箇条書き：応募条件 */
+.audition-conds{
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin-bottom:32px;
+}
+.audition-conds li{
+  display:flex;
+  align-items:baseline;
+  gap:8px;
+  font-size:15px;
+  font-weight:700;
+  color:#1a0535;
+  line-height:1.5;
+}
+.audition-conds li::before{
+  content:'★';
+  color:#FF8C00;
+  font-size:14px;
+  flex-shrink:0;
+}
+
+/* ボタン */
+.audition-btns{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  max-width:320px;
+}
+.btn-line-mv{
+  background:#06C755;
+  color:#fff;
+  font-size:15px;font-weight:900;
+  padding:14px 24px;
+  border-radius:999px;
+  display:flex;align-items:center;justify-content:center;
+  gap:8px;
+  box-shadow:0 4px 14px rgba(6,199,85,.35);
+}
+.btn-line-mv:hover{opacity:.9}
+.btn-mail-mv{
+  background:#d42a74;
+  color:#fff;
+  font-size:15px;font-weight:900;
+  padding:14px 24px;
+  border-radius:999px;
+  display:flex;align-items:center;justify-content:center;
+  gap:8px;
+  box-shadow:0 4px 14px rgba(212,42,116,.3);
+}
+.btn-mail-mv:hover{opacity:.9}
+
+/* ── 右：人物ビジュアル + 縦組みテキスト ── */
+.audition-mv-right{
+  position:relative;
+  height:100%;
+  min-height:420px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+}
+
+/* 人物写真コンテナ */
+.audition-photo-frame{
+  position:relative;
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+}
+.audition-photo-frame img{
+  height:480px;
+  width:auto;
+  object-fit:contain;
+  filter:drop-shadow(4px 0 24px rgba(180,60,120,.35));
+}
+.audition-photo-placeholder{
+  width:260px;
+  height:360px;
+  background:linear-gradient(160deg,rgba(255,140,0,.25),rgba(212,42,116,.2));
+  border:2px dashed rgba(26,5,53,.25);
+  border-radius:16px;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:12px;
+  color:rgba(26,5,53,.35);
+  font-size:13px;
+}
+.audition-photo-placeholder i{font-size:36px;opacity:.4}
+
+/* 縦組みテキスト（右端） */
+.audition-vertical{
+  position:absolute;
+  right:-16px;
+  top:50%;transform:translateY(-50%);
+  writing-mode:vertical-rl;
+  font-family:'Zen Maru Gothic',sans-serif;
+  font-weight:900;
+  font-size:clamp(13px,1.6vw,18px);
+  letter-spacing:.18em;
+  color:#FF8C00;
+  text-shadow:1px 1px 0 rgba(26,5,53,.2);
+  white-space:nowrap;
+}
+
+/* ============================================
+   RESPONSIVE
+============================================ */
+@media(max-width:767px){
+  .logo-bar img{height:30px}
+
+  .hero{min-height:100svh;align-items:flex-start}
+
+  .hero-photo{
+    width:100%;height:50%;
+    top:auto;bottom:0;
+    opacity:.5;
+  }
+  .hero-photo-placeholder{border-left:none}
+
+  .hero-overlay{
+    width:100%;
+    background:linear-gradient(to bottom,rgba(15,4,36,.75) 0%,rgba(15,4,36,.55) 60%,rgba(15,4,36,.8) 100%);
+  }
+
+  .hero-content{
+    padding:100px 24px 60px;
+    max-width:100%;
+  }
+
+  .hero-catch-sub{font-size:14px}
+
+  .hero-scroll{left:24px;bottom:24px}
+
+  /* セクション2 スマホ */
+  .audition-mv-inner{
+    grid-template-columns:1fr;
+    padding:40px 20px 32px;
+    min-height:auto;
+    gap:20px;
+  }
+  .audition-mv-right{
+    min-height:240px;
+    order:-1;
+  }
+  .audition-photo-placeholder{width:180px;height:240px}
+  .audition-photo-frame img{height:240px}
+  .audition-vertical{
+    right:4px;
+    font-size:12px;
+  }
+  .audition-title{font-size:clamp(40px,12vw,64px)}
+  .audition-btns{max-width:100%}
+  .deco-circle.c1,.deco-circle.c2{display:none}
+}
+
+/* ② → ③ 差し込み画像帯 */
+.audition-img-band{
+  display:block;
+  margin:0;
+  padding:0;
+  line-height:0;
+  background:#FFE000;
+}
+.audition-img-band img{
+  width:100%;
+  height:auto;
+  display:block;
+  margin:0;
+  padding:0;
+}
+
+/* ============================================
+   セクション3：募集説明 ＋ 右カード群
+============================================ */
+.recruit{
+  background:#fde8ee;
+  padding:52px 0;
+}
+.recruit-grid{
+  max-width:1080px;
+  margin:0 auto;
+  padding:0 48px;
+  display:grid;
+  grid-template-columns:1fr 300px;
+  gap:40px;
+  align-items:start;
+}
+
+/* ── 左カラム ── */
+.recruit-left{display:flex;flex-direction:column;}
+
+.recruit-heading{
+  font-family:'Zen Maru Gothic',sans-serif;
+  font-weight:900;
+  font-size:clamp(22px,3vw,32px);
+  line-height:1.3;
+  color:#1a0535;
+  margin-bottom:16px;
+}
+.recruit-heading .sub{
+  display:block;
+  font-size:.72em;
+  font-weight:700;
+  color:#3b6ea8;
+  letter-spacing:.06em;
+}
+
+.recruit-divider{
+  width:100%;
+  height:2px;
+  background:linear-gradient(90deg,#3b6ea8,rgba(59,110,168,.1));
+  margin-bottom:24px;
+  border:none;
+}
+
+.recruit-body{
+  font-size:14px;
+  line-height:1.9;
+  color:#2a2a4a;
+  margin-bottom:32px;
+}
+.recruit-body p+p{margin-top:12px}
+
+/* ボタン2つ：黄緑 + 水色、黒外周ニュアンス */
+.recruit-btns{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  max-width:340px;
+}
+.btn-recruit-line{
+  background:#8fd14f;
+  color:#1a1a1a;
+  font-size:15px;font-weight:900;
+  padding:14px 24px;
+  border-radius:999px;
+  border:2px solid #1a1a1a;
+  box-shadow:4px 4px 0 #1a1a1a;
+  display:flex;align-items:center;justify-content:center;
+  gap:8px;
+}
+.btn-recruit-line:hover{opacity:.85}
+.btn-recruit-mail{
+  background:#7ad7f0;
+  color:#1a1a1a;
+  font-size:15px;font-weight:900;
+  padding:14px 24px;
+  border-radius:999px;
+  border:2px solid #1a1a1a;
+  box-shadow:4px 4px 0 #1a1a1a;
+  display:flex;align-items:center;justify-content:center;
+  gap:8px;
+}
+.btn-recruit-mail:hover{opacity:.85}
+
+/* ── 右カラム ── */
+.recruit-right{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+/* NEWS!! カード */
+.news-card{
+  background:#FFE000;
+  border-radius:12px;
+  border:2px solid #1a1a1a;
+  box-shadow:4px 4px 0 #1a1a1a;
+  padding:22px 22px 20px;
+}
+.card-heading{
+  font-family:'Zen Maru Gothic',sans-serif;
+  font-weight:900;
+  font-size:20px;
+  color:#1a0535;
+  margin-bottom:10px;
+  letter-spacing:.04em;
+}
+.card-divider{
+  width:100%;height:2px;
+  background:#1a0535;
+  border:none;
+  margin-bottom:16px;
+  opacity:.2;
+}
+.news-list{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.news-item{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+  padding-bottom:10px;
+  border-bottom:1px solid rgba(26,5,53,.12);
+}
+.news-item:last-child{border-bottom:none;padding-bottom:0}
+.news-date{font-size:11px;color:#665f00;font-weight:700;letter-spacing:.06em}
+.news-title{font-size:13px;font-weight:500;color:#1a0535;line-height:1.5}
+
+/* Ifamの特徴カード */
+.feature-card{
+  background:#b3edf5;
+  border-radius:12px;
+  border:2px solid #1a1a1a;
+  box-shadow:4px 4px 0 #1a1a1a;
+  padding:22px 22px 20px;
+}
+.feature-list{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.feature-item{
+  display:flex;
+  align-items:baseline;
+  gap:8px;
+  font-size:13px;
+  color:#1a0535;
+  line-height:1.5;
+}
+.feature-item::before{
+  content:'◆';
+  color:#1a88a8;
+  font-size:11px;
+  flex-shrink:0;
+}
+
+/* セクション3 スマホ */
+@media(max-width:767px){
+  .recruit-grid{grid-template-columns:1fr;padding:0 20px;gap:28px}
+  .recruit-right{gap:14px}
+  .news-card,.feature-card{padding:18px 16px}
+}
+
+/* ============================================
+   セクション4：事業内容紹介
+============================================ */
+.business{
+  background:#f4f0f8;
+  padding:52px 0 60px;
+}
+.business-inner{
+  max-width:1080px;
+  margin:0 auto;
+  padding:0 48px;
+}
+
+/* セクション見出し */
+.business-label{
+  font-size:11px;font-weight:700;letter-spacing:.18em;
+  color:#a84870;
+  background:rgba(255,255,255,.5);
+  border-radius:999px;
+  padding:4px 14px;
+  display:inline-block;
+  margin-bottom:10px;
+}
+.business-heading{
+  font-family:'Zen Maru Gothic',sans-serif;
+  font-weight:900;
+  font-size:clamp(18px,2.6vw,26px);
+  color:#1a0535;
+  margin-bottom:28px;
+  line-height:1.35;
+}
+.business-heading span{color:#a84870}
+
+/* ── 3カード共通グリッド ── */
+.project-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:20px;
+}
+
+/* Ifam：フルワイド横並びカード */
+.project-main-card{
+  background:#fff;
+  border-radius:20px;
+  border:2px solid #1a1a1a;
+  box-shadow:6px 6px 0 #1a1a1a;
+  overflow:hidden;
+  display:grid;
+  grid-template-columns:280px 1fr;
+  cursor:pointer;
+  transition:opacity .15s;
+}
+.project-main-card:hover{opacity:.88}
+.project-main-img{
+  background:linear-gradient(135deg,#f5dde8,#fbb4cc,#f07aaa);
+  display:flex;align-items:center;justify-content:center;
+  min-height:260px;
+  padding:12px;
+  overflow:hidden;
+}
+.project-main-img img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  filter:drop-shadow(0 4px 16px rgba(180,50,100,.25));
+}
+.project-main-body{
+  padding:32px 36px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:14px;
+  border-left:1px solid #f0e0e8;
+}
+.project-main-name{
+  font-family:'Zen Maru Gothic',sans-serif;
+  font-weight:900;
+  font-size:26px;
+  color:#1a0535;
+}
+.project-main-name span{
+  display:block;
+  font-size:12px;
+  font-weight:700;
+  color:#a84870;
+  letter-spacing:.08em;
+  margin-bottom:6px;
+}
+.project-main-badge{
+  background:#FFE000;
+  color:#1a1a1a;
+  font-size:13px;font-weight:900;
+  padding:6px 18px;
+  border-radius:999px;
+  border:2px solid #1a1a1a;
+  white-space:nowrap;
+  align-self:flex-start;
+}
+.project-main-desc{
+  color:#4a3060;
+  font-size:13px;
+  line-height:1.85;
+  border-top:1px solid #f0e0e8;
+  padding-top:14px;
+}
+.project-main-desc strong{
+  color:#a84870;
+  font-weight:900;
+  display:block;
+  margin-bottom:2px;
+}
+.project-main-desc .desc-note{
+  display:block;
+  margin-top:10px;
+  font-size:12px;
+  color:#887a9a;
+  line-height:1.6;
+}
+
+/* Vfam・タレント：下段2カラム */
+.project-sub-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+.project-sub-card{
+  background:#fff;
+  border-radius:16px;
+  border:2px solid #1a1a1a;
+  box-shadow:4px 4px 0 #1a1a1a;
+  overflow:hidden;
+}
+.project-sub-img{
+  width:100%;
+  height:160px;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;
+  overflow:hidden;
+}
+.project-sub-img.vfam{background:linear-gradient(135deg,#c8f0ff,#80d4f0)}
+.project-sub-img.talent{background:linear-gradient(135deg,#ffd6e8,#f0a0c0)}
+.project-sub-img img{
+  max-height:120px;
+  max-width:80%;
+  object-fit:contain;
+}
+.coming-badge{
+  position:absolute;
+  bottom:10px;right:10px;
+  background:#1a1a1a;
+  color:#fff;
+  font-size:10px;font-weight:900;
+  padding:4px 12px;
+  border-radius:999px;
+  letter-spacing:.06em;
+}
+.on-air-badge{
+  position:absolute;
+  top:10px;right:10px;
+  background:#FF6B00;
+  color:#fff;
+  font-size:10px;font-weight:900;
+  padding:4px 12px;
+  border-radius:999px;
+}
+.project-sub-body{
+  padding:14px 18px 18px;
+}
+.project-sub-name{
+  font-family:'Zen Maru Gothic',sans-serif;
+  font-weight:900;
+  font-size:16px;
+  color:#1a0535;
+  margin-bottom:4px;
+}
+.project-sub-name span{
+  display:block;
+  font-size:11px;font-weight:700;
+  color:#a84870;
+  letter-spacing:.06em;
+}
+.project-sub-desc{
+  font-size:12px;color:#665f88;line-height:1.5;
+}
+
+/* セクション4 スマホ */
+@media(max-width:767px){
+  .business-inner{padding:0 20px}
+  .project-main-card{grid-template-columns:1fr}
+  .project-main-img{min-height:200px;padding:20px}
+  .project-main-body{padding:20px 22px 24px;gap:12px;border-left:none;border-top:1px solid rgba(255,255,255,.15)}
+  .project-main-name{font-size:20px}
+  .project-main-desc{font-size:13px}
+  .project-sub-grid{grid-template-columns:1fr 1fr}
+  .project-sub-img{height:130px}
+}
+
+/* ============================================
+   セクション5：会社理念
+============================================ */
+.philosophy{
+  background:#fff;
+  padding:56px 0 64px;
+}
+.philosophy-inner{
+  max-width:1080px;
+  margin:0 auto;
+  padding:0 48px;
+}
+
+/* セクション見出し */
+.philosophy-section-heading{
+  font-family:'Zen Maru Gothic',sans-serif;
+  font-weight:900;
+  font-size:clamp(18px,2.4vw,24px);
+  color:#1a0535;
+  margin-bottom:40px;
+  padding-bottom:16px;
+  border-bottom:2px solid #1a0535;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.philosophy-section-heading::before{
+  content:'◆';
+  color:#a84870;
+  font-size:.85em;
+}
+
+/* 2カラムグリッド */
+.philosophy-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0 56px;
+  align-items:start;
+}
+
+/* 各ブロック */
+.phil-block{
+  padding:28px 0;
+  border-bottom:1px solid #e0dcea;
+}
+.phil-block:first-child{padding-top:0}
+.phil-block:last-child{border-bottom:none}
+
+/* 小見出し */
+.phil-label{
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.22em;
+  color:#a84870;
+  margin-bottom:6px;
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+.phil-label::before{
+  content:'◆';
+  font-size:9px;
+}
+.phil-title{
+  font-family:'Zen Maru Gothic',sans-serif;
+  font-weight:900;
+  font-size:clamp(18px,2.2vw,22px);
+  color:#1a0535;
+  margin-bottom:12px;
+  line-height:1.3;
+}
+.phil-text{
+  font-size:14px;
+  line-height:1.95;
+  color:#444466;
+}
+.phil-text+.phil-text{margin-top:10px}
+
+/* 縦の区切り線（2カラム間） */
+.philosophy-grid{position:relative}
+.philosophy-grid::before{
+  content:'';
+  position:absolute;
+  top:0;bottom:0;
+  left:50%;
+  width:1px;
+  background:linear-gradient(to bottom,transparent,#c8c4d8 10%,#c8c4d8 90%,transparent);
+}
+
+/* 代表者名 */
+.phil-name{
+  margin-top:16px;
+  font-family:'Zen Maru Gothic',sans-serif;
+  font-weight:900;
+  font-size:17px;
+  color:#1a0535;
+  display:flex;
+  align-items:baseline;
+  gap:8px;
+}
+.phil-name-role{
+  font-size:11px;
+  font-weight:700;
+  color:#a84870;
+  letter-spacing:.1em;
+}
+
+/* 右カラム上に横線 */
+.phil-col-right .phil-block:first-child{padding-top:0}
+
+/* セクション5 スマホ */
+@media(max-width:767px){
+  .philosophy-inner{padding:0 20px}
+  .philosophy-grid{
+    grid-template-columns:1fr;
+    gap:0;
+  }
+  .philosophy-grid::before{display:none}
+  .phil-col-right .phil-block:first-child{padding-top:28px}
+}
+
+/* ============================================
+   セクション6：フッター実績 + SNS + CTA
+============================================ */
+.footer-cta{
+  background:#e8f5ff;
+  padding:52px 0 0;
+}
+.footer-cta-inner{
+  max-width:1080px;
+  margin:0 auto;
+  padding:0 48px;
+}
+
+/* 上段2カラム */
+.footer-cta-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:48px;
+  margin-bottom:56px;
+  align-items:start;
+}
+
+/* ── 左：ロゴ＋実績 ── */
+.footer-logo-wrap{
+  margin-bottom:28px;
+}
+.footer-logo-wrap img{
+  height:40px;
+  width:auto;
+  object-fit:contain;
+}
+
+.achievement-block{margin-bottom:28px}
+.achievement-heading{
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.2em;
+  color:#1a6090;
+  margin-bottom:12px;
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+.achievement-heading::before{
+  content:'';
+  display:inline-block;
+  width:18px;height:2px;
+  background:#1a6090;
+  flex-shrink:0;
+}
+.achievement-list{
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.achievement-list li{
+  font-size:13px;
+  color:#1a2a4a;
+  line-height:1.5;
+  display:flex;
+  align-items:baseline;
+  gap:8px;
+}
+.achievement-list li::before{
+  content:'▶';
+  font-size:9px;
+  color:#1a6090;
+  flex-shrink:0;
+  margin-top:3px;
+}
+.achievement-sub{
+  font-size:12px;
+  font-weight:400;
+  color:#4a6a8a;
+}
+
+/* ── 右：SNS＋CTAボタン ── */
+.footer-right{display:flex;flex-direction:column;}
+
+.sns-section-heading{
+  font-family:'Zen Maru Gothic',sans-serif;
+  font-weight:900;
+  font-size:18px;
+  color:#1a0535;
+  margin-bottom:20px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.sns-section-heading::before{
+  content:'◆';
+  color:#a84870;
+  font-size:.8em;
+}
+
+.sns-row{
+  display:flex;
+  gap:14px;
+  margin-bottom:32px;
+  flex-wrap:wrap;
+}
+.sns-icon-btn{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 18px;
+  border-radius:999px;
+  border:2px solid #1a1a1a;
+  box-shadow:3px 3px 0 #1a1a1a;
+  font-size:13px;
+  font-weight:700;
+  color:#1a1a1a;
+  background:#fff;
+  transition:transform .12s,box-shadow .12s;
+  white-space:nowrap;
+}
+.sns-icon-btn:hover{
+  transform:translate(2px,2px);
+  box-shadow:1px 1px 0 #1a1a1a;
+}
+.sns-icon-btn i{font-size:18px}
+.sns-icon-btn.tiktok i{color:#000}
+.sns-icon-btn.youtube i{color:#ff0000}
+.sns-icon-btn.twitter i{color:#000}
+.sns-icon-btn.instagram i{
+  background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+/* CTAボタン2つ */
+.footer-cta-btns{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  max-width:360px;
+}
+.btn-footer-line{
+  background:#06C755;
+  color:#fff;
+  font-size:16px;font-weight:900;
+  padding:16px 28px;
+  border-radius:999px;
+  border:2px solid #1a1a1a;
+  box-shadow:4px 4px 0 #1a1a1a;
+  display:flex;align-items:center;justify-content:center;
+  gap:10px;
+}
+.btn-footer-line:hover{opacity:.85}
+.btn-footer-mail{
+  background:#fff;
+  color:#1a1a1a;
+  font-size:15px;font-weight:700;
+  padding:14px 28px;
+  border-radius:999px;
+  border:2px solid #1a1a1a;
+  box-shadow:4px 4px 0 #1a1a1a;
+  display:flex;align-items:center;justify-content:center;
+  gap:10px;
+}
+.btn-footer-mail:hover{opacity:.85}
+
+/* 下段：コピーライトバー */
+.footer-bottom{
+  background:#1a0535;
+  margin-top:0;
+  padding:20px 48px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  flex-wrap:wrap;
+}
+.footer-bottom-nav{
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+}
+.footer-bottom-nav a{
+  font-size:12px;
+  color:rgba(255,255,255,.55);
+  transition:color .2s;
+}
+.footer-bottom-nav a:hover{color:rgba(255,255,255,.9)}
+.footer-bottom-nav a.nav-audition{
+  color:#1a1a1a;
+  background:#FFE000;
+  font-size:12px;font-weight:900;
+  padding:5px 14px;
+  border-radius:999px;
+  border:1.5px solid #1a1a1a;
+  letter-spacing:.04em;
+  animation:btn-pulse 1.4s ease-in-out infinite;
+}
+.footer-bottom-nav a.nav-audition:hover{
+  opacity:.85;
+  color:#1a1a1a;
+  animation-play-state:paused;
+}
+.footer-copy{
+  font-size:11px;
+  color:rgba(255,255,255,.35);
+  letter-spacing:.06em;
+}
+
+/* セクション6 スマホ */
+@media(max-width:767px){
+  .footer-cta-inner{padding:0 20px}
+  .footer-cta-grid{
+    grid-template-columns:1fr;
+    gap:32px;
+    margin-bottom:40px;
+  }
+  .sns-row{gap:10px}
+  .sns-icon-btn{padding:8px 14px;font-size:12px}
+  .footer-cta-btns{max-width:100%}
+  .footer-bottom{
+    padding:16px 20px;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:10px;
+  }
+}
+
+/* ============================================
+   企業概要セクション
+============================================ */
+.company-profile{
+  background:#f4f0f8;
+  padding:48px 0 40px;
+}
+.company-profile-inner{
+  max-width:720px;
+  margin:0 auto;
+  padding:0 48px;
+}
+.company-profile-label{
+  font-size:11px;font-weight:700;letter-spacing:.18em;
+  color:#a84870;
+  background:rgba(255,255,255,.5);
+  border-radius:999px;
+  padding:4px 14px;
+  display:inline-block;
+  margin-bottom:10px;
+}
+.company-profile-heading{
+  font-family:'Zen Maru Gothic',sans-serif;
+  font-weight:900;
+  font-size:18px;
+  color:#1a0535;
+  margin-bottom:24px;
+}
+.company-table{
+  width:100%;
+  border-collapse:collapse;
+}
+.company-table tr{
+  border-bottom:1px solid #e8e0f0;
+}
+.company-table tr:first-child{
+  border-top:1px solid #e8e0f0;
+}
+.company-table th{
+  width:120px;
+  padding:12px 16px 12px 0;
+  font-size:12px;font-weight:700;
+  color:#a84870;
+  text-align:left;
+  vertical-align:top;
+  white-space:nowrap;
+}
+.company-table td{
+  padding:12px 0;
+  font-size:13px;
+  color:#3a2a55;
+  line-height:1.7;
+}
+.company-table td a{
+  color:#a84870;
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+@media(max-width:767px){
+  .company-profile-inner{padding:0 20px}
+  .company-table th{width:90px;font-size:11px}
+  .company-table td{font-size:12px}
+}
+
+/* ============================================
+   ズームアニメーション（全CTAボタン共通）
+============================================ */
+@keyframes icon-zoom{
+  0%,100%{transform:scale(1)}
+  50%    {transform:scale(1.6)}
+}
+@keyframes btn-pulse{
+  0%,100%{transform:scale(1);    box-shadow:0 4px 14px rgba(255,255,255,.2)}
+  50%    {transform:scale(1.12); box-shadow:0 8px 28px rgba(255,255,255,.5)}
+}
+@keyframes btn-pulse-mail{
+  0%,100%{transform:scale(1);    box-shadow:0 4px 14px rgba(212,42,116,.3)}
+  50%    {transform:scale(1.12); box-shadow:0 8px 28px rgba(255,80,160,.6)}
+}
+
+/* ボタン全体がパルス伸縮 */
+.btn-line-mv,
+.btn-recruit-line,
+.btn-footer-line{
+  animation:btn-pulse 1.4s ease-in-out infinite;
+}
+.btn-mail-mv,
+.btn-recruit-mail,
+.btn-footer-mail{
+  animation:btn-pulse-mail 1.4s ease-in-out infinite;
+  animation-delay:.7s;
+}
+
+/* ボタン内アイコンが大きくズーム */
+.btn-line-mv i,
+.btn-mail-mv i,
+.btn-recruit-line i,
+.btn-recruit-mail i,
+.btn-footer-line i,
+.btn-footer-mail i{
+  display:inline-block;
+  animation:icon-zoom 1.4s ease-in-out infinite;
+}
+.btn-mail-mv i,
+.btn-recruit-mail i,
+.btn-footer-mail i{
+  animation-delay:.7s;
+}
+
+/* ホバー中はアニメーション停止 */
+.btn-line-mv:hover,
+.btn-mail-mv:hover,
+.btn-recruit-line:hover,
+.btn-recruit-mail:hover,
+.btn-footer-line:hover,
+.btn-footer-mail:hover{
+  animation-play-state:paused;
+}
+.btn-line-mv:hover i,
+.btn-mail-mv:hover i,
+.btn-recruit-line:hover i,
+.btn-recruit-mail:hover i,
+.btn-footer-line:hover i,
+.btn-footer-mail:hover i{
+  animation-play-state:paused;
+}
+
+/* ============================================
+   ポップアップモーダル
+============================================ */
+.popup-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  z-index:9000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  opacity:0;
+  animation:popup-fade-in .35s ease forwards;
+}
+.popup-overlay.hidden{display:none}
+@keyframes popup-fade-in{
+  to{opacity:1}
+}
+.popup-box{
+  position:relative;
+  width:min(90vw, 85vh);
+  max-width:900px;
+  animation:popup-scale-in .35s ease forwards;
+}
+@keyframes popup-scale-in{
+  from{transform:scale(.85);opacity:0}
+  to  {transform:scale(1);  opacity:1}
+}
+.popup-box a{
+  display:block;
+  line-height:0;
+}
+.popup-box img{
+  width:100%;
+  height:auto;
+  display:block;
+  border-radius:12px;
+  box-shadow:0 12px 48px rgba(0,0,0,.5);
+}
+.popup-close{
+  position:absolute;
+  top:-18px;
+  right:-18px;
+  width:44px;height:44px;
+  background:#fff;
+  border:none;
+  border-radius:50%;
+  cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;
+  color:#1a1a1a;
+  box-shadow:0 4px 12px rgba(0,0,0,.25);
+  z-index:1;
+  line-height:1;
+}
+.popup-close:hover{background:#f0f0f0}
+@media(max-width:767px){
+  .popup-box{width:95vw;max-width:none}
+  .popup-close{top:-14px;right:-10px;width:38px;height:38px;font-size:18px}
+}
+</style>
+</head>
+<body>
+
+<!-- ① ロゴ帯 -->
+<div id="top"></div>
+<div class="logo-bar">
+  <img src="ロゴ画像素材/logo_famdpro.png" alt="FAMFSプロダクション">
+</div>
+
+<!-- ① ヒーロー -->
+<section class="hero">
+
+  <!-- 左側テキストオーバーレイ -->
+  <div class="hero-overlay"></div>
+
+  <!-- 右側：人物写真 -->
+  <div class="hero-photo">
+    <!-- 実写真が用意できたら <img src="hero-photo.jpg" alt=""> に差し替え -->
+    <div class="hero-photo-placeholder">
+      <i class="fa-regular fa-image"></i>
+      人物写真<br>（準備中）
+    </div>
+  </div>
+
+  <!-- テキストエリア -->
+  <div class="hero-content">
+    <p class="hero-eyebrow">FAMDSPRO PRODUCTION</p>
+
+    <h1 class="hero-catch-main">
+      <span class="line1">夢を、現実に。</span>
+    </h1>
+
+    <p class="hero-catch-sub">
+      FAMDSプロダクションは、才能を支え育て<br>
+      世代を超える影響力へと<br>
+      導くプロダクションです。
+    </p>
+  </div>
+
+  <!-- スクロール誘導 -->
+  <div class="hero-scroll">SCROLL</div>
+
+</section>
+
+<!-- ② オーディション告知メインビジュアル -->
+<section class="audition-mv">
+
+  <!-- Layer1：背景装飾 -->
+  <div class="audition-mv-deco"></div>
+  <div class="audition-mv-stripe"></div>
+  <div class="deco-circle c1"></div>
+  <div class="deco-circle c2"></div>
+  <div class="deco-circle c3"></div>
+  <div class="deco-circle c4"></div>
+  <span class="deco-star s1">★</span>
+  <span class="deco-star s2">★</span>
+  <span class="deco-star s3">★</span>
+  <span class="deco-star s4">★</span>
+
+  <div class="audition-mv-inner">
+
+    <!-- Layer2：テキスト -->
+    <div class="audition-mv-left">
+      <div class="audition-badge">FAMFSプロダクション 第1期生募集</div>
+
+      <h2 class="audition-title">
+        第1期生<br>
+        <span class="t-pink">オーディション</span>
+      </h2>
+
+      <div class="audition-date-wrap">
+        <span class="audition-date-label">応募期間</span>
+        <span class="audition-date-body">5.20 〜 6.20 まで</span>
+      </div>
+
+      <ul class="audition-conds">
+        <li>年齢 14〜24歳の女性</li>
+        <li>未経験OK・経験者歓迎</li>
+        <li>参加費・レッスン費 完全無料</li>
+        <li>交通費は自己負担</li>
+        <li>活動地域：大阪・兵庫</li>
+      </ul>
+
+      <div class="audition-btns">
+        <a href="../v4/index.html" class="btn-line-mv">
+          <i class="fa-brands fa-line"></i>LINEで無料エントリー
+        </a>
+        <a href="mailto:info@famfs.jp" class="btn-mail-mv">
+          <i class="fa-solid fa-envelope"></i>メールで無料エントリー
+        </a>
+      </div>
+    </div>
+
+    <!-- Layer3：人物ビジュアル + 縦組み -->
+    <div class="audition-mv-right">
+      <div class="audition-photo-frame">
+        <!-- 実写真: <img src="audition-photo.png" alt="オーディション"> -->
+        <div class="audition-photo-placeholder">
+          <i class="fa-regular fa-image"></i>
+          人物写真<br>（準備中）
+        </div>
+      </div>
+      <span class="audition-vertical">第１期生 大募集中</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ② → ③ 差し込み画像 -->
+<a href="famdsHP_audition/audition.html" class="audition-img-band">
+  <img src="audition_yellow.png" alt="第1期生オーディション">
+</a>
+
+<!-- ③ 募集説明 ＋ 右カード群 -->
+<section class="recruit">
+  <div class="recruit-grid">
+
+    <!-- 左カラム -->
+    <div class="recruit-left">
+      <h2 class="recruit-heading">
+        <span class="sub">FAMFSプロダクション</span>
+        第一弾新規プロジェクト<br>アイドル育成始動
+      </h2>
+      <hr class="recruit-divider">
+      <div class="recruit-body">
+        <p>FAMFSプロダクションは、大阪を拠点に次世代のアイドル・VTuber・タレントを育成する新興プロダクションです。</p>
+        <p>第一弾プロジェクトとして、大阪発アイドルグループ「Ifam（あいふぁむ）」の第1期生を広く募集します。未経験の方も大歓迎。参加費・レッスン費は完全無料で、衣装や舞台制作もプロダクションが全面サポートします。</p>
+        <p>フェスや大型イベントへの出演を目標に、本格的なアイドル活動をゼロから始めてみませんか。あなたの「やってみたい」という気持ちが、一番大切な資格です。</p>
+      </div>
+      <div class="recruit-btns">
+        <a href="../v4/index.html" class="btn-recruit-line">
+          <i class="fa-brands fa-line"></i>LINEで無料エントリー
+        </a>
+        <a href="mailto:info@famfs.jp" class="btn-recruit-mail">
+          <i class="fa-solid fa-envelope"></i>メールで無料エントリー
+        </a>
+      </div>
+    </div>
+
+    <!-- 右カラム -->
+    <div class="recruit-right">
+
+      <!-- NEWS!! カード -->
+      <div class="news-card">
+        <div class="card-heading">NEWS!!</div>
+        <hr class="card-divider">
+        <div class="news-list">
+          <div class="news-item">
+            <span class="news-date">2026.05.15</span>
+            <span class="news-title">FAMFSプロダクション公式サイトをオープンしました</span>
+          </div>
+          <div class="news-item">
+            <span class="news-date">2026.05.20</span>
+            <span class="news-title">Instagram・TikTok・Threadsを開設しました</span>
+          </div>
+          <div class="news-item">
+            <span class="news-date">2026.05.30</span>
+            <a href="famdsHP_audition/audition.html" class="news-title" style="text-decoration:underline;text-underline-offset:3px;color:#1a6fcc;">Ifam第1期生オーディション開始のお知らせ</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ifamの特徴カード -->
+      <div class="feature-card">
+        <div class="card-heading">Ifamの特徴</div>
+        <hr class="card-divider">
+        <div class="feature-list">
+          <div class="feature-item">参加費・レッスン費が完全無料</div>
+          <div class="feature-item">未経験からプロのステージへ</div>
+          <div class="feature-item">完全オリジナルデザイン衣装を支給</div>
+          <div class="feature-item">フェス・大型イベント出演を目指す</div>
+          <div class="feature-item">専属講師によるボイス・ダンスレッスン</div>
+          <div class="feature-item">最短3ヶ月でデビュー可能</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ④ 事業内容紹介 -->
+<section class="business" id="projects">
+  <div class="business-inner">
+
+    <span class="business-label">BUSINESS</span>
+    <h2 class="business-heading">
+      事業内容　第一プロジェクト　<span>アイドル部門 Ifam</span>
+    </h2>
+
+    <div class="project-grid">
+
+      <!-- Ifamメインカード（フルワイド） -->
+      <a href="famdsHP_audition/audition.html" class="project-main-card">
+        <div class="project-main-img">
+          <img src="ロゴ画像素材/logo_ifam.jpg" alt="Ifam（あいふぁむ）">
+        </div>
+        <div class="project-main-body">
+          <div class="project-main-name">
+            <span>第一プロジェクト｜アイドル部門</span>
+            Ifam（あいふぁむ）
+          </div>
+          <span class="project-main-badge">🎤 オーディション中</span>
+          <div class="project-main-desc">
+            <strong>第一弾プロジェクト</strong>
+            新規アイドルオーディション開催中<br>
+            応募期間 5/30〜6/30 23:59まで<br><br>
+            LINEまたはメールで簡単応募
+            <span class="desc-note">オーディション費用／レッスン費用／登録費用などは一切ございません。<br>「やってみたい」の気持ちだけでOK</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 下段：第二・第三プロジェクト -->
+      <div class="project-sub-grid">
+
+      <!-- Vfam -->
+      <div class="project-sub-card">
+        <div class="project-sub-img vfam">
+          <img src="ロゴ画像素材/logo_vfam_r2.png" alt="Vfam">
+          <span class="coming-badge">Coming soon</span>
+        </div>
+        <div class="project-sub-body">
+          <div class="project-sub-name">
+            <span>第二プロジェクト｜VTuber部門</span>
+            Vfam（ぶいふぁむ）
+          </div>
+          <p class="project-sub-desc">バーチャルアイドルプロジェクト。詳細は近日公開予定。</p>
+        </div>
+      </div>
+
+      <!-- タレント部門 -->
+      <div class="project-sub-card">
+        <div class="project-sub-img talent">
+          <img src="ロゴ画像素材/logo_talent_r2.png" alt="タレント部門">
+          <span class="coming-badge">Coming soon</span>
+        </div>
+        <div class="project-sub-body">
+          <div class="project-sub-name">
+            <span>第三プロジェクト｜タレント部門</span>
+            タレント部門
+          </div>
+          <p class="project-sub-desc">モデル・タレント活動支援部門。詳細は近日公開予定。</p>
+        </div>
+      </div>
+
+      </div><!-- /project-sub-grid -->
+
+    </div><!-- /project-grid -->
+  </div>
+</section>
+
+<!-- ⑤ 会社理念 -->
+<section class="philosophy" id="philosophy">
+  <div class="philosophy-inner">
+
+    <h2 class="philosophy-section-heading">FAMFSプロダクション　会社理念</h2>
+
+    <div class="philosophy-grid">
+
+      <!-- 左カラム -->
+      <div class="phil-col-left">
+
+        <div class="phil-block">
+          <p class="phil-label">ABOUT</p>
+          <h3 class="phil-title">夢を、現実に。</h3>
+          <p class="phil-text">FAMFSプロダクションは、大阪を拠点に才能を支え育て、世代を超える影響力へと導くプロダクションです。アイドル・VTuber・タレントの育成を通じて、次世代のエンターテインメントを創造します。</p>
+        </div>
+
+        <div class="phil-block">
+          <p class="phil-label">MISSION</p>
+          <h3 class="phil-title">才能を支え、<br>本物へ育てる。</h3>
+          <p class="phil-text">「やってみたい」という気持ちを持つすべての人に、プロとして輝くための環境と機会を提供します。参加費・レッスン費無料という仕組みは、経済的な理由で夢を諦めないための、私たちの意思表明です。</p>
+        </div>
+
+        <div class="phil-block">
+          <p class="phil-label">VISION</p>
+          <h3 class="phil-title">大阪発、<br>世界へ届ける。</h3>
+          <p class="phil-text">地元大阪から始まり、フェスや大型イベントを経て、日本全国・そして世界へ響く存在を輩出すること。それがFAMFSプロダクションの描く未来です。</p>
+        </div>
+
+      </div>
+
+      <!-- 右カラム -->
+      <div class="phil-col-right">
+
+        <div class="phil-block">
+          <p class="phil-label">VALUE</p>
+          <h3 class="phil-title">本気・誠実・<br>挑戦。</h3>
+          <p class="phil-text">所属するすべてのメンバーと誠実に向き合い、妥協のないステージを追求します。失敗を恐れず挑戦し続けることが、このプロダクションの文化です。</p>
+        </div>
+
+        <div class="phil-block">
+          <p class="phil-label">MESSAGE</p>
+          <h3 class="phil-title">先輩、私をプロへ。</h3>
+          <p class="phil-text">人の中でも責任感があって、次世代を育てる人材へと成長してほしい。FAMFSプロダクションは、あなたの夢の伴走者でありたいと思っています。一緒に、時代を動かしましょう。</p>
+          <div class="phil-name">
+            <span class="phil-name-role">代表</span>
+            石田あすか
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ⑥ フッター実績 + SNS + CTA -->
+<footer class="footer-cta">
+  <div class="footer-cta-inner">
+    <div class="footer-cta-grid">
+
+      <!-- 左：ロゴ＋実績 -->
+      <div class="footer-left">
+        <div class="footer-logo-wrap">
+          <img src="ロゴ画像素材/logo_famdpro.png" alt="FAMFSプロダクション">
+        </div>
+
+        <div class="achievement-block">
+          <p class="achievement-heading">イベント実績</p>
+          <ul class="achievement-list">
+            <li>言×THE ANSWER ゲスト出演<br><span class="achievement-sub">イベント 制作協力</span></li>
+            <li>神戸クルーザー ビアガーデン<br><span class="achievement-sub">DJイベント キャスティング運営</span></li>
+            <li>神戸クルーザー ハロウィンイベント<br><span class="achievement-sub">企画・制作</span></li>
+            <li>2025年 SEAMO / RAY 出演<br><span class="achievement-sub">イベント企画・制作</span></li>
+            <li>2023年 KEN ex DA PUMP 出演<br><span class="achievement-sub">イベント企画・制作</span></li>
+            <li>なんばリバープレイス<br><span class="achievement-sub">アイドルイベント 制作</span></li>
+          </ul>
+        </div>
+
+        <div class="achievement-block">
+          <p class="achievement-heading">出演実績</p>
+          <ul class="achievement-list">
+            <li>全肉祭</li>
+            <li>カレーEXPO</li>
+            <li>ラーメンEXPO</li>
+            <li>EXPO 2025 関西万博</li>
+            <li>地上波テレビ KBS京都 番組出演</li>
+            <li>MERCURYDUO モデル 心斎橋OPA掲載</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 右：SNS＋CTA -->
+      <div class="footer-right">
+        <h3 class="sns-section-heading">ソーシャルメディアでつながる</h3>
+
+        <div class="sns-row">
+          <a href="#" class="sns-icon-btn tiktok">
+            <i class="fa-brands fa-tiktok"></i>TikTok
+          </a>
+          <a href="#" class="sns-icon-btn youtube">
+            <i class="fa-brands fa-youtube"></i>YouTube
+          </a>
+          <a href="#" class="sns-icon-btn twitter">
+            <i class="fa-brands fa-x-twitter"></i>X
+          </a>
+          <a href="#" class="sns-icon-btn instagram">
+            <i class="fa-brands fa-instagram"></i>Instagram
+          </a>
+        </div>
+
+        <div class="footer-cta-btns">
+          <a href="../v4/index.html" class="btn-footer-line">
+            <i class="fa-brands fa-line"></i>LINEで無料エントリー
+          </a>
+          <a href="mailto:info@famfs.jp" class="btn-footer-mail">
+            <i class="fa-solid fa-envelope"></i>メールでお問い合わせ
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+<!-- ⑦ 企業概要 -->
+<section class="company-profile" id="company">
+  <div class="company-profile-inner">
+    <span class="company-profile-label">COMPANY</span>
+    <h2 class="company-profile-heading">企業概要</h2>
+    <table class="company-table">
+      <tr>
+        <th>屋号</th>
+        <td>FAMFSプロダクション</td>
+      </tr>
+      <tr>
+        <th>代表</th>
+        <td>石田あすか</td>
+      </tr>
+      <tr>
+        <th>設立</th>
+        <td>2025年7月</td>
+      </tr>
+      <tr>
+        <th>所在地</th>
+        <td>〒532-0011<br>大阪市淀川区西中島7-8-36-704</td>
+      </tr>
+      <tr>
+        <th>事業内容</th>
+        <td>音楽・動画配信の企画制作 ／ タレントマネジメント<br>ライブイベント企画・主催 ／ 撮影<br>衣装・ロゴデザイン</td>
+      </tr>
+      <tr>
+        <th>お問い合わせ</th>
+        <td>LINE: <a href="#">公式LINEはこちら</a><br>メール: <a href="mailto:info@famfs.jp">info@famfs.jp</a></td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<!-- コピーライトバー -->
+<div class="footer-bottom">
+  <nav class="footer-bottom-nav">
+    <a href="#top">TOP</a>
+    <a href="#projects">事業内容</a>
+    <a href="#philosophy">会社理念</a>
+    <a href="famdsHP_audition/audition.html" class="nav-audition">🎤 オーディション</a>
+  </nav>
+  <p class="footer-copy">&copy; 2025 FAMFSプロダクション All Rights Reserved.</p>
+</div>
+
+<!-- ポップアップモーダル -->
+<div class="popup-overlay" id="popupOverlay">
+  <div class="popup-box" id="popupBox">
+    <button class="popup-close" id="popupClose" aria-label="閉じる">&times;</button>
+    <a href="famdsHP_audition/audition.html">
+      <img src="audition_yellow.png" alt="第1期生オーディション開催中">
+    </a>
+  </div>
+</div>
+
+<script>
+(function(){
+  var overlay = document.getElementById('popupOverlay');
+  var box     = document.getElementById('popupBox');
+  var btn     = document.getElementById('popupClose');
+
+  function close(){
+    overlay.classList.add('hidden');
+  }
+
+  btn.addEventListener('click', function(e){
+    e.stopPropagation();
+    close();
+  });
+
+  overlay.addEventListener('click', function(e){
+    if(!box.contains(e.target)) close();
+  });
+})();
+</script>
+</body>
+</html>
