@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="description" content="大阪発アイドルグループ『Ifam』オーディション開催中！参加費・レッスン費完全無料。未経験OK。最短3ヶ月でステージへ。FAMFSプロダクション主催。">
+<meta name="keywords" content="アイドルオーディション,大阪,Ifam,無料,未経験,FAMFSプロダクション">
+<title>Ifamオーディション開催中｜FAMFSプロダクション【参加費・レッスン費無料】</title>
+
+<!-- OGP -->
+<meta property="og:title" content="Ifamオーディション開催中｜FAMFSプロダクション">
+<meta property="og:description" content="大阪発アイドルグループ『Ifam』オーディション！参加費・レッスン費完全無料。未経験OK。最短3ヶ月でステージへ。">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+/* ============================================
+   VARIABLES & RESET
+============================================ */
+:root{
+  --pink:     #ff6b9d;
+  --pink-lt:  #ffb3cc;
+  --pink-pale:#fff0f5;
+  --blue:     #5bc8e8;
+  --blue-lt:  #b8eaf5;
+  --blue-pale:#f0fafd;
+  --purple:   #b19cd9;
+  --purple-lt:#ddd5f0;
+  --purple-pale:#f5f2fc;
+  --yellow:   #ffe066;
+  --white:    #ffffff;
+  --off-white:#fdfbff;
+  --gray:     #f7f7f9;
+  --gray-bd:  #e8e8ee;
+  --text:     #333344;
+  --text-mid: #666677;
+  --text-lt:  #999aaa;
+  --radius:   16px;
+  --radius-sm:8px;
+  --shadow:   0 4px 24px rgba(180,100,180,.10);
+  --shadow-sm:0 2px 12px rgba(180,100,180,.08);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  font-family:'Noto Sans JP','Zen Maru Gothic',sans-serif;
+  color:var(--text);
+  background:var(--white);
+  line-height:1.7;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%;height:auto}
+ul{list-style:none}
+
+/* ============================================
+   UTILITY
+============================================ */
+.container{max-width:960px;margin:0 auto;padding:0 20px}
+.pc-only{display:block}
+.sp-only{display:none}
+.text-center{text-align:center}
+.text-pink{color:var(--pink)}
+.text-blue{color:var(--blue)}
+.text-purple{color:var(--purple)}
+
+/* ============================================
+   ANNOUNCEMENT BAR（最上部固定）
+============================================ */
+.announce-bar{
+  background:linear-gradient(90deg,var(--pink),var(--purple),var(--blue));
+  color:var(--white);
+  text-align:center;
+  padding:10px 20px;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.08em;
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+}
+.announce-bar span{
+  background:var(--yellow);
+  color:var(--text);
+  border-radius:4px;
+  padding:2px 10px;
+  margin-right:8px;
+  font-size:11px;
+  font-weight:900;
+}
+.announce-sp-br{display:none}
+
+/* ============================================
+   HEADER
+============================================ */
+header{
+  position:fixed;top:40px;left:0;right:0;
+  z-index:990;
+  background:rgba(255,255,255,.95);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--gray-bd);
+  padding:12px 20px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.header-logo{
+  display:flex;align-items:center;
+  flex-shrink:0;
+}
+.header-logo img{
+  height:48px;
+  width:auto;
+  max-width:220px;
+  object-fit:contain;
+  display:block;
+}
+
+.header-cta{display:flex;gap:8px}
+.btn-line-sm{
+  background:#06C755;color:var(--white);
+  font-size:12px;font-weight:700;
+  padding:8px 16px;border-radius:24px;
+  display:flex;align-items:center;gap:6px;
+  transition:opacity .2s;white-space:nowrap;
+}
+.btn-line-sm:hover{opacity:.85}
+.btn-mail-sm{
+  background:var(--pink);color:var(--white);
+  font-size:12px;font-weight:700;
+  padding:8px 16px;border-radius:24px;
+  display:flex;align-items:center;gap:6px;
+  transition:opacity .2s;white-space:nowrap;
+}
+.btn-mail-sm:hover{opacity:.85}
+
+/* ============================================
+   HERO（ファーストビュー）
+============================================ */
+.hero{
+  min-height:100svh;
+  padding:140px 20px 80px;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;
+  background:
+    linear-gradient(160deg,
+      #fff0f8 0%,
+      #f5f0ff 40%,
+      #f0fafd 100%);
+  position:relative;
+  overflow:hidden;
+}
+/* 装飾円 */
+.hero::before{
+  content:'';
+  position:absolute;
+  width:600px;height:600px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(255,107,157,.12) 0%,transparent 70%);
+  top:-100px;right:-150px;
+  pointer-events:none;
+}
+.hero::after{
+  content:'';
+  position:absolute;
+  width:400px;height:400px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(91,200,232,.1) 0%,transparent 70%);
+  bottom:-80px;left:-100px;
+  pointer-events:none;
+}
+
+/* Ifamロゴエリア（画像差し替え用） */
+.hero-logo-wrap{
+  margin-bottom:24px;
+  position:relative;z-index:1;
+}
+.hero-logo-img{
+  /* ロゴ画像をここに差し替え: <img src="logo-ifam-color.png"> */
+  display:inline-block;
+  font-family:'Zen Maru Gothic',sans-serif;
+  font-size:clamp(52px,14vw,100px);
+  font-weight:900;
+  background:linear-gradient(135deg,var(--pink) 0%,var(--purple) 50%,var(--blue) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+  letter-spacing:-.02em;
+  line-height:1;
+}
+.hero-logo-sub{
+  font-size:clamp(11px,3vw,15px);
+  color:var(--text-mid);
+  letter-spacing:.2em;
+  margin-top:6px;
+}
+
+.hero-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:linear-gradient(90deg,var(--pink),var(--purple));
+  color:var(--white);
+  font-size:12px;font-weight:700;
+  padding:6px 18px;border-radius:999px;
+  margin-bottom:20px;
+  position:relative;z-index:1;
+  animation:pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(255,107,157,.4)}
+  50%{box-shadow:0 0 0 10px rgba(255,107,157,0)}
+}
+
+.hero-catch{
+  font-size:clamp(22px,5.5vw,42px);
+  font-weight:900;
+  line-height:1.35;
+  margin-bottom:12px;
+  position:relative;z-index:1;
+}
+.hero-catch .em{
+  color:var(--pink);
+  position:relative;display:inline-block;
+}
+.hero-catch .em::after{
+  content:'';
+  position:absolute;bottom:-2px;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,var(--pink),var(--purple));
+  border-radius:2px;
+}
+
+.hero-sub{
+  font-size:clamp(14px,3.5vw,17px);
+  color:var(--text-mid);
+  line-height:1.8;
+  margin-bottom:36px;
+  position:relative;z-index:1;
+}
+.hero-period{
+  display:inline-block;
+  margin-top:4px;
+  background:linear-gradient(90deg,var(--pink),var(--purple));
+  color:var(--white);
+  font-size:clamp(13px,3.2vw,15px);
+  font-weight:700;
+  padding:4px 14px;
+  border-radius:20px;
+  letter-spacing:.04em;
+}
+
+.hero-points{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin-bottom:36px;
+  position:relative;z-index:1;
+  width:100%;max-width:480px;
+}
+.hero-point{
+  background:var(--white);
+  border:1.5px solid var(--pink-lt);
+  border-radius:999px;
+  font-size:13px;font-weight:700;
+  padding:7px 10px;
+  color:var(--pink);
+  text-align:center;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.hero-btns{
+  display:flex;flex-direction:column;gap:12px;
+  width:100%;max-width:320px;
+  position:relative;z-index:1;
+}
+.btn-line-hero{
+  background:#06C755;color:var(--white);
+  font-size:16px;font-weight:900;
+  padding:18px 24px;border-radius:999px;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  box-shadow:0 6px 20px rgba(6,199,85,.35);
+  transition:transform .2s,box-shadow .2s;
+}
+.btn-line-hero:active{transform:scale(.97)}
+.btn-mail-hero{
+  background:linear-gradient(90deg,var(--pink),var(--purple));
+  color:var(--white);
+  font-size:16px;font-weight:900;
+  padding:18px 24px;border-radius:999px;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  box-shadow:0 6px 20px rgba(177,156,217,.4);
+  transition:transform .2s;
+}
+.btn-mail-hero:active{transform:scale(.97)}
+.hero-note{
+  font-size:12px;color:var(--text-lt);
+  margin-top:12px;
+  position:relative;z-index:1;
+}
+
+/* スクロール誘導 */
+.hero-scroll{
+  position:absolute;bottom:24px;left:50%;
+  transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  z-index:1;
+}
+.hero-scroll span{font-size:10px;letter-spacing:.2em;color:var(--text-lt)}
+.hero-scroll i{color:var(--pink);animation:bounce .8s ease infinite alternate}
+@keyframes bounce{from{transform:translateY(0)}to{transform:translateY(6px)}}
+
+/* ============================================
+   固定CTA（右下）
+============================================ */
+.fixed-cta{
+  position:fixed;bottom:20px;right:16px;
+  z-index:980;
+  display:flex;flex-direction:column;gap:10px;
+}
+.fixed-cta a{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  padding:14px 20px;border-radius:999px;
+  font-size:13px;font-weight:700;color:var(--white);
+  box-shadow:0 4px 16px rgba(0,0,0,.2);
+  transition:transform .2s;
+  white-space:nowrap;
+}
+.fixed-cta a:active{transform:scale(.96)}
+.fixed-line{background:#06C755}
+.fixed-mail{background:linear-gradient(135deg,var(--pink),var(--purple))}
+
+/* ============================================
+   SECTION 共通
+============================================ */
+section{padding:72px 0}
+.section-label{
+  display:inline-block;
+  font-size:11px;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:var(--pink);
+  background:var(--pink-pale);
+  padding:4px 14px;border-radius:999px;
+  margin-bottom:12px;
+}
+.section-title{
+  font-size:clamp(24px,5vw,36px);
+  font-weight:900;line-height:1.25;
+  margin-bottom:8px;
+}
+.section-desc{
+  font-size:15px;color:var(--text-mid);
+  line-height:1.8;max-width:600px;margin:0 auto 40px;
+}
+.section-title-wrap{text-align:center;margin-bottom:40px}
+
+/* ============================================
+   ③ Ifamとは
+============================================ */
+.about{background:var(--off-white)}
+.about-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:16px;
+  margin-bottom:32px;
+}
+.about-card{
+  background:var(--white);
+  border-radius:var(--radius);
+  padding:28px 24px;
+  box-shadow:var(--shadow-sm);
+  border-top:4px solid var(--pink);
+}
+.about-card.blue{border-top-color:var(--blue)}
+.about-card.purple{border-top-color:var(--purple)}
+.about-card h3{
+  font-size:15px;font-weight:700;
+  margin-bottom:10px;
+  display:flex;align-items:center;gap:8px;
+}
+.about-card h3 i{color:var(--pink);font-size:18px}
+.about-card.blue h3 i{color:var(--blue)}
+.about-card.purple h3 i{color:var(--purple)}
+.about-card p{font-size:13px;color:var(--text-mid);line-height:1.8}
+.about-message{
+  background:linear-gradient(135deg,var(--pink-pale),var(--purple-pale));
+  border-radius:var(--radius);
+  padding:32px 28px;
+  text-align:center;
+}
+.about-message p{font-size:16px;font-weight:700;line-height:1.8;margin-bottom:8px}
+.about-message span{font-size:14px;color:var(--text-mid)}
+
+/* ============================================
+   ④ 募集要項
+============================================ */
+.requirements{background:var(--white)}
+.req-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.req-box{
+  border-radius:var(--radius);
+  padding:28px 24px;
+}
+.req-box.pink{background:var(--pink-pale);border:2px solid var(--pink-lt)}
+.req-box.green{background:#f0fff4;border:2px solid #86efac}
+.req-box h3{
+  font-size:16px;font-weight:900;
+  margin-bottom:16px;
+  display:flex;align-items:center;gap:8px;
+}
+.req-box.pink h3{color:var(--pink)}
+.req-box.green h3{color:#16a34a}
+.req-box ul li{
+  font-size:14px;
+  padding:8px 0;
+  border-bottom:1px solid rgba(0,0,0,.06);
+  display:flex;align-items:flex-start;gap:8px;
+  line-height:1.6;
+}
+.req-box ul li:last-child{border-bottom:none}
+.req-box ul li::before{
+  content:'✓';font-weight:700;flex-shrink:0;margin-top:1px;
+}
+.req-box.pink ul li::before{color:var(--pink)}
+.req-box.green ul li::before{color:#16a34a}
+.req-free-banner{
+  background:linear-gradient(135deg,var(--pink),var(--purple));
+  border-radius:var(--radius);
+  padding:24px;
+  text-align:center;
+  color:var(--white);
+  margin-top:16px;
+}
+.req-free-banner .big{font-size:28px;font-weight:900}
+.req-free-banner .small{font-size:13px;margin-top:4px;opacity:.85}
+
+/* ============================================
+   ⑤ Ifamの強み
+============================================ */
+.strengths{background:var(--gray)}
+.strength-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:14px;
+}
+.strength-card{
+  background:var(--white);
+  border-radius:var(--radius);
+  padding:28px 16px;
+  text-align:center;
+  box-shadow:var(--shadow-sm);
+  transition:transform .2s;
+}
+.strength-card:hover{transform:translateY(-4px)}
+.strength-icon{
+  width:64px;height:64px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 14px;
+  font-size:28px;
+}
+.ic-pink{background:var(--pink-pale)}
+.ic-blue{background:var(--blue-pale)}
+.ic-purple{background:var(--purple-pale)}
+.ic-yellow{background:#fffbeb}
+.ic-green{background:#f0fff4}
+.strength-card h3{font-size:14px;font-weight:700;margin-bottom:6px}
+.strength-card p{font-size:12px;color:var(--text-mid);line-height:1.6}
+
+/* ============================================
+   ⑥ オーディションの流れ
+============================================ */
+.flow{background:var(--white)}
+.flow-steps{
+  display:flex;flex-direction:column;gap:0;
+  max-width:600px;margin:0 auto;
+}
+.flow-step{
+  display:flex;align-items:flex-start;gap:20px;
+  padding:24px 0;
+  position:relative;
+}
+.flow-step:not(:last-child)::after{
+  content:'';
+  position:absolute;left:24px;top:72px;
+  width:2px;height:calc(100% - 48px);
+  background:linear-gradient(to bottom,var(--pink-lt),var(--purple-lt));
+}
+.step-num{
+  flex-shrink:0;
+  width:48px;height:48px;border-radius:50%;
+  background:linear-gradient(135deg,var(--pink),var(--purple));
+  color:var(--white);
+  font-size:20px;font-weight:900;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;z-index:1;
+  box-shadow:0 4px 12px rgba(255,107,157,.3);
+}
+.step-body h3{
+  font-size:16px;font-weight:700;
+  margin-bottom:6px;
+}
+.step-body p{font-size:13px;color:var(--text-mid);line-height:1.7}
+.step-tag{
+  display:inline-block;
+  background:var(--pink-pale);
+  color:var(--pink);
+  font-size:11px;font-weight:700;
+  padding:2px 10px;border-radius:999px;
+  margin-top:6px;
+}
+
+/* ============================================
+   ⑦ 講師紹介
+============================================ */
+.teachers{background:var(--gray)}
+.teacher-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.teacher-card{
+  background:var(--white);
+  border-radius:var(--radius);
+  padding:28px 24px 24px;
+  box-shadow:var(--shadow-sm);
+  text-align:center;
+  cursor:pointer;
+  transition:transform .15s,box-shadow .15s;
+}
+.teacher-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 8px 24px rgba(0,0,0,.12);
+}
+.teacher-photo{
+  width:140px;height:140px;
+  border-radius:8px;
+  background:linear-gradient(135deg,var(--pink-lt),var(--purple-lt));
+  margin:0 auto 16px;
+  overflow:hidden;
+}
+.teacher-photo img{
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:center top;
+  display:block;
+}
+.teacher-role{
+  font-size:11px;font-weight:700;letter-spacing:.1em;
+  color:var(--pink);
+  background:var(--pink-pale);
+  padding:3px 12px;border-radius:999px;
+  margin-bottom:10px;display:inline-block;
+}
+.teacher-name{font-size:20px;font-weight:900;margin-bottom:4px}
+.teacher-name-en{font-size:12px;color:var(--text-mid);font-weight:500;margin-bottom:10px}
+.teacher-desc{font-size:13px;color:var(--text-mid);line-height:1.6}
+.teacher-more-hint{
+  display:inline-block;
+  margin-top:14px;
+  font-size:12px;
+  color:var(--purple);
+  border-bottom:1px solid var(--purple);
+  padding-bottom:1px;
+}
+
+/* 講師プロフィールポップアップ */
+.teacher-popup-overlay{
+  position:fixed;inset:0;
+  background:rgba(0,0,0,.6);
+  z-index:9100;
+  display:flex;align-items:center;justify-content:center;
+  padding:20px;
+  opacity:0;
+  animation:t-popup-fade .3s ease forwards;
+}
+.teacher-popup-overlay.hidden{display:none}
+@keyframes t-popup-fade{to{opacity:1}}
+.teacher-popup-box{
+  background:#fff;
+  border-radius:16px;
+  width:min(680px,90vw);
+  max-height:85vh;
+  overflow-y:auto;
+  padding:40px 36px 36px;
+  position:relative;
+  animation:t-popup-scale .3s ease forwards;
+  box-shadow:0 16px 48px rgba(0,0,0,.3);
+}
+@keyframes t-popup-scale{
+  from{transform:scale(.88);opacity:0}
+  to  {transform:scale(1);  opacity:1}
+}
+.teacher-popup-close{
+  position:absolute;top:14px;right:16px;
+  background:none;border:none;
+  font-size:26px;color:#888;cursor:pointer;
+  line-height:1;
+}
+.teacher-popup-close:hover{color:#333}
+.teacher-popup-photo{
+  width:100px;height:100px;
+  border-radius:8px;
+  overflow:hidden;
+  margin:0 auto 16px;
+}
+.teacher-popup-photo img{
+  width:100%;height:100%;
+  object-fit:cover;object-position:center top;
+}
+.teacher-popup-name{
+  font-size:22px;font-weight:900;
+  text-align:center;margin-bottom:4px;
+  color:var(--text-dark);
+}
+.teacher-popup-name-en{
+  font-size:12px;color:var(--text-mid);
+  text-align:center;margin-bottom:6px;
+}
+.teacher-popup-role{
+  text-align:center;
+  font-size:12px;font-weight:700;letter-spacing:.08em;
+  color:var(--pink);background:var(--pink-pale);
+  padding:3px 14px;border-radius:999px;
+  display:inline-block;
+  margin-bottom:20px;
+}
+.teacher-popup-body{
+  text-align:left;
+}
+.teacher-popup-body p{
+  font-size:13px;line-height:1.85;
+  color:var(--text-mid);
+  white-space:pre-wrap;
+}
+@media(max-width:767px){
+  .teacher-popup-box{padding:32px 20px 24px}
+}
+
+/* ============================================
+   ⑧ 実績
+============================================ */
+.achievements{background:var(--white)}
+.ach-section{margin-bottom:36px}
+.ach-section h3{
+  font-size:15px;font-weight:700;
+  color:var(--text-mid);
+  margin-bottom:16px;
+  display:flex;align-items:center;gap:8px;
+}
+.ach-section h3::after{
+  content:'';flex:1;height:1px;background:var(--gray-bd);
+}
+.ach-tags{display:flex;flex-wrap:wrap;gap:8px}
+.ach-tag{
+  background:var(--gray);
+  border-radius:var(--radius-sm);
+  padding:10px 16px;
+  font-size:13px;font-weight:500;
+  display:flex;align-items:center;gap:8px;
+  transition:background .2s;
+}
+.ach-tag i{color:var(--pink);font-size:14px}
+.ach-tag:hover{background:var(--pink-pale)}
+
+/* ============================================
+   ⑨ プロジェクト一覧
+============================================ */
+.projects{background:var(--gray)}
+.project-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  grid-template-rows:auto auto;
+  gap:20px;
+}
+.project-card{
+  border-radius:var(--radius);
+  padding:28px 20px 24px;
+  display:flex;flex-direction:column;align-items:center;
+  text-align:center;gap:14px;
+  cursor:pointer;
+  transition:transform .2s,box-shadow .2s;
+  position:relative;overflow:hidden;
+  background:var(--white);
+  border:2px solid var(--gray-bd);
+  box-shadow:var(--shadow-sm);
+}
+.project-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+/* Ifamカード：上段フル幅・大きく目立たせる */
+.project-card.main{
+  grid-column:1 / -1;
+  background:linear-gradient(160deg,var(--pink-pale) 0%,var(--purple-pale) 100%);
+  border:3px solid var(--pink-lt);
+  padding:40px 32px 32px;
+  box-shadow:0 8px 32px rgba(255,107,157,.18);
+}
+.project-card.coming{
+  opacity:.75;cursor:default;
+}
+.project-card.coming:hover{transform:none;box-shadow:var(--shadow-sm)}
+/* ロゴ表示エリア */
+.project-logo-wrap{
+  width:100%;
+  display:flex;align-items:center;justify-content:center;
+  padding:12px;
+  min-height:120px;
+}
+.project-logo-wrap img{
+  max-width:100%;
+  max-height:110px;
+  width:auto;
+  object-fit:contain;
+}
+/* Ifam専用：ロゴを大きく */
+.project-card.main .project-logo-wrap{
+  min-height:180px;
+  padding:16px 24px;
+}
+.project-card.main .project-logo-wrap img{
+  max-height:160px;
+}
+.project-body{width:100%}
+.project-body h3{font-size:16px;font-weight:900;margin-bottom:6px}
+.project-card.main .project-body h3{font-size:20px;margin-bottom:8px}
+.project-body p{font-size:12px;color:var(--text-mid);line-height:1.6}
+.project-card.main .project-body p{font-size:14px}
+.project-badge{
+  display:inline-block;
+  font-size:11px;font-weight:700;
+  padding:5px 14px;border-radius:999px;
+  background:var(--yellow);color:var(--text);
+}
+.project-card.main .project-badge{font-size:13px;padding:7px 20px}
+.project-badge.cs{background:var(--gray-bd);color:var(--text-mid)}
+.project-arrow{color:var(--pink);font-size:16px}
+
+/* ============================================
+   ⑩ SNS
+============================================ */
+.sns-section{background:var(--white);padding:56px 0}
+.sns-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:12px;
+  max-width:480px;margin:0 auto;
+}
+.sns-btn{
+  aspect-ratio:1;border-radius:var(--radius);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:8px;
+  font-size:11px;font-weight:700;
+  transition:transform .2s,box-shadow .2s;
+  color:var(--white);
+}
+.sns-btn:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.sns-btn i{font-size:26px}
+.sns-ig{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)}
+.sns-yt{background:#ff0000}
+.sns-tt{background:#010101}
+.sns-th{background:#101010}
+
+/* ============================================
+   ⑪ 会社概要
+============================================ */
+.company{background:var(--gray)}
+.company-inner{
+  max-width:680px;margin:0 auto;
+}
+.company-trust{
+  background:linear-gradient(135deg,var(--pink-pale),var(--blue-pale));
+  border-radius:var(--radius);
+  padding:28px 24px;
+  text-align:center;
+  margin-bottom:32px;
+}
+.company-trust p{font-size:15px;font-weight:700;line-height:1.8;margin-bottom:4px}
+.company-trust span{font-size:13px;color:var(--text-mid)}
+.company-table{width:100%;border-collapse:collapse}
+.company-table tr{border-bottom:1px solid var(--gray-bd)}
+.company-table tr:last-child{border-bottom:none}
+.company-table th{
+  width:120px;padding:16px 12px;
+  font-size:13px;font-weight:700;
+  color:var(--text-mid);
+  text-align:left;vertical-align:top;
+}
+.company-table td{
+  padding:16px 12px;
+  font-size:14px;line-height:1.7;
+}
+
+/* ============================================
+   CTA SECTION（応募セクション）
+============================================ */
+.cta-section{
+  background:linear-gradient(135deg,var(--pink),var(--purple),var(--blue));
+  padding:72px 20px;
+  text-align:center;
+}
+.cta-section .cta-title{
+  font-size:clamp(22px,5vw,36px);
+  font-weight:900;color:var(--white);
+  line-height:1.3;margin-bottom:12px;
+}
+.cta-section .cta-sub{
+  font-size:15px;color:rgba(255,255,255,.85);
+  margin-bottom:36px;
+}
+.cta-btns{
+  display:flex;flex-direction:column;gap:14px;
+  align-items:center;
+}
+.btn-line-cta{
+  background:var(--white);color:#06C755;
+  font-size:17px;font-weight:900;
+  padding:20px 32px;border-radius:999px;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  width:100%;max-width:320px;
+  box-shadow:0 8px 24px rgba(0,0,0,.15);
+  transition:transform .2s;
+}
+.btn-line-cta:active{transform:scale(.97)}
+.btn-mail-cta{
+  background:rgba(255,255,255,.2);
+  border:2px solid var(--white);
+  color:var(--white);
+  font-size:17px;font-weight:900;
+  padding:20px 32px;border-radius:999px;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  width:100%;max-width:320px;
+  transition:background .2s;
+}
+.btn-mail-cta:hover{background:rgba(255,255,255,.3)}
+.cta-note{font-size:12px;color:rgba(255,255,255,.7);margin-top:16px}
+
+/* ============================================
+   FOOTER
+============================================ */
+footer{
+  background:#1a1a2a;
+  color:rgba(255,255,255,.6);
+  padding:48px 20px 40px;
+  text-align:center;
+}
+.footer-logo{
+  font-size:22px;font-weight:900;
+  background:linear-gradient(90deg,var(--pink),var(--purple));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+  margin-bottom:4px;
+}
+/* フッターロゴ画像差し替え用 */
+.footer-logo img{height:40px;width:auto;margin:0 auto}
+.footer-sub{font-size:12px;margin-bottom:20px}
+.footer-nav{
+  display:flex;gap:20px;justify-content:center;
+  flex-wrap:wrap;margin-bottom:24px;
+}
+.footer-nav a{font-size:12px;color:rgba(255,255,255,.4);transition:color .2s}
+.footer-nav a:hover{color:var(--white)}
+.footer-copy{font-size:11px;color:rgba(255,255,255,.25)}
+
+/* ============================================
+   FAQ（追加要素）
+============================================ */
+.faq{background:var(--white)}
+.faq-list{max-width:680px;margin:0 auto}
+.faq-item{
+  border-bottom:1px solid var(--gray-bd);
+  overflow:hidden;
+}
+.faq-q{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:20px 0;
+  cursor:pointer;
+  font-size:15px;font-weight:700;
+  transition:color .2s;
+}
+.faq-q::before{
+  content:'Q';
+  flex-shrink:0;width:28px;height:28px;
+  background:linear-gradient(135deg,var(--pink),var(--purple));
+  color:var(--white);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:900;margin-top:1px;
+}
+.faq-q .faq-icon{
+  margin-left:auto;flex-shrink:0;
+  font-size:14px;color:var(--pink);
+  transition:transform .3s;
+}
+.faq-item.open .faq-icon{transform:rotate(45deg)}
+.faq-a{
+  display:none;
+  padding:0 0 20px 40px;
+  font-size:14px;color:var(--text-mid);line-height:1.8;
+}
+.faq-item.open .faq-a{display:block}
+
+/* ============================================
+   RESPONSIVE（スマホ最優先）
+============================================ */
+@media(max-width:767px){
+  .pc-only{display:none}
+  .sp-only{display:block}
+
+  /* アナウンスバー（2行になるため高さ調整） */
+  .announce-bar{font-size:11px;padding:6px 12px;line-height:1.6}
+  .announce-bar span{margin-right:4px}
+  .announce-sp-br{display:block}
+
+  /* ヘッダー：2段組み（ロゴ上・ボタン下） */
+  header{
+    top:52px;
+    padding:8px 12px;
+    flex-direction:column;
+    align-items:stretch;
+    gap:6px;
+  }
+  .header-logo{justify-content:center}
+  .header-logo img{height:36px;max-width:160px}
+  .header-cta{justify-content:center;gap:8px}
+  .btn-line-sm,.btn-mail-sm{
+    font-size:12px;padding:7px 14px;
+    flex:1;justify-content:center;
+  }
+
+  .hero{padding:170px 20px 72px}
+
+  .about-grid{grid-template-columns:1fr}
+  .req-grid{grid-template-columns:1fr}
+  .strength-grid{grid-template-columns:repeat(2,1fr)}
+  .teacher-grid{grid-template-columns:1fr}
+  .project-grid{grid-template-columns:1fr 1fr}
+  .project-card.main{
+    grid-column:1 / -1;
+    padding:28px 16px 24px;
+  }
+  .project-card.main .project-logo-wrap{min-height:130px;padding:12px}
+  .project-card.main .project-logo-wrap img{max-height:120px}
+  .project-card.main .project-body h3{font-size:17px}
+  .project-card.main .project-body p{font-size:13px}
+  .project-logo-wrap{min-height:80px;padding:10px}
+  .project-logo-wrap img{max-height:70px}
+  .project-body h3{font-size:13px}
+  .project-body p{font-size:11px}
+  .sns-grid{grid-template-columns:repeat(4,1fr)}
+
+  .fixed-cta{right:12px;bottom:16px;gap:8px}
+  .fixed-cta a{padding:12px 16px;font-size:12px}
+
+  .company-table th{width:96px;padding:12px 8px;font-size:12px}
+  .company-table td{padding:12px 8px;font-size:13px}
+}
+
+@media(max-width:400px){
+  .strength-grid{grid-template-columns:1fr 1fr}
+  .hero-points{gap:8px;max-width:100%}
+  .hero-point{font-size:11px;padding:6px 8px}
+}
+</style>
+</head>
+<body>
+
+<!-- ① アナウンスバー -->
+<div class="announce-bar">
+  <span>🎤 受付中</span>
+  Ifamオーディション開催中！<br class="announce-sp-br">参加費・レッスン費<strong>完全無料</strong>
+</div>
+
+<!-- ヘッダー -->
+<header>
+  <div class="header-logo">
+    <img src="ロゴ素材/logo_famdpro.png" alt="FAMFSプロダクション">
+  </div>
+  <div class="header-cta">
+    <a href="https://line.me/ti/p/XXX" class="btn-line-sm">
+      <i class="fa-brands fa-line"></i>LINEで無料エントリー
+    </a>
+    <a href="mailto:info@famfs.jp?subject=Ifamオーディション応募" class="btn-mail-sm">
+      <i class="fa-solid fa-envelope"></i>メールで無料エントリー
+    </a>
+  </div>
+</header>
+
+<!-- ① ファーストビュー -->
+<section class="hero" id="top">
+  <div class="hero-badge">
+    <i class="fa-solid fa-star"></i> オーディション開催中！
+  </div>
+
+  <!-- Ifamロゴ（画像がある場合はimgタグに差し替え） -->
+  <div class="hero-logo-wrap">
+    <!-- <img src="logo-ifam-color.png" alt="Ifam" style="height:100px;width:auto;margin:0 auto"> -->
+    <div class="hero-logo-img">Ifam</div>
+    <div class="hero-logo-sub">あいふぁむ ／ by FAMFSプロダクション</div>
+  </div>
+
+  <h1 class="hero-catch">
+    <span class="em">未経験OK！</span><br>
+    フェスや大型イベントを目指す<br>
+    <span class="em">地上（てっぺん）アイドル</span>
+  </h1>
+  <p class="hero-sub">大阪発アイドルグループ<br>アイドルメンバーオーディション開催<br><span class="hero-period">応募期間　5/30〜6/30 23:59まで</span></p>
+
+  <div class="hero-points">
+    <span class="hero-point">💰 参加費無料</span>
+    <span class="hero-point">🎤 レッスン無料</span>
+    <span class="hero-point">👗 完全オリジナルデザイン衣装</span>
+    <span class="hero-point">⚡ 最短3ヶ月デビュー</span>
+  </div>
+
+  <div class="hero-btns">
+    <a href="https://line.me/ti/p/XXX" class="btn-line-hero">
+      <i class="fa-brands fa-line" style="font-size:22px"></i>
+      LINEで無料エントリー
+    </a>
+    <a href="mailto:info@famfs.jp?subject=Ifamオーディション応募" class="btn-mail-hero">
+      <i class="fa-solid fa-envelope" style="font-size:18px"></i>
+      メールで無料エントリー
+    </a>
+    <p class="hero-note">未成年の方は保護者の同意のうえご応募ください</p>
+  </div>
+
+  <div class="hero-scroll">
+    <span>SCROLL</span>
+    <i class="fa-solid fa-chevron-down"></i>
+  </div>
+</section>
+
+<!-- ③ Ifamとは -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="section-title-wrap">
+      <span class="section-label">ABOUT IFAM</span>
+      <h2 class="section-title">Ifamとは？</h2>
+      <p class="section-desc">地下アイドルではなく、<strong>フェスや大型イベントへの出演</strong>を目指す<br>本格派アイドルプロジェクトです。</p>
+    </div>
+    <div class="about-grid">
+      <div class="about-card">
+        <h3><i class="fa-solid fa-bolt"></i>目指す場所が違う</h3>
+        <p>地下アイドルではなく、全肉祭・関西万博・KBS京都など大型フェス・メディア出演を目指します。実績ある事務所があなたの夢をサポートします。</p>
+      </div>
+      <div class="about-card blue">
+        <h3><i class="fa-solid fa-seedling" style="color:var(--blue)"></i>本気の育成体制</h3>
+        <p>プロのダンス講師・ボイストレーナーによる無料レッスン。未経験でも最短3ヶ月でステージデビューを目指せる環境を整えています。</p>
+      </div>
+      <div class="about-card purple">
+        <h3><i class="fa-solid fa-heart" style="color:var(--purple)"></i>無料で挑戦できる</h3>
+        <p>参加費/登録費/レッスン費/ライブ出演費は一切かかりません。お金の心配なく、夢だけに集中できます。</p>
+      </div>
+      <div class="about-card blue">
+        <h3><i class="fa-solid fa-shirt" style="color:var(--blue)"></i>プロが作るオリジナル衣装</h3>
+        <p>衣装・ロゴデザインもプロが担当。自分たちだけのオリジナル衣装でステージに立てます。</p>
+      </div>
+    </div>
+    <div class="about-message">
+      <p>「やってみたい」その気持ちが一番大切。<br>歌もダンスも、ゼロから一緒に育てます。</p>
+      <span>— FAMFSプロダクション 代表 石田あすか</span>
+    </div>
+  </div>
+</section>
+
+<!-- ④ 募集要項 -->
+<section class="requirements" id="requirements">
+  <div class="container">
+    <div class="section-title-wrap">
+      <span class="section-label">REQUIREMENTS</span>
+      <h2 class="section-title">募集要項</h2>
+    </div>
+    <div class="req-grid">
+      <div class="req-box pink">
+        <h3><i class="fa-solid fa-user-check"></i> 応募資格</h3>
+        <ul>
+          <li>14〜24歳の女性</li>
+          <li>心身ともに健康な方</li>
+          <li>大阪に通える方</li>
+          <li>他事務所に所属していない方</li>
+          <li>未成年の方は保護者の同意が必要です</li>
+        </ul>
+      </div>
+      <div class="req-box green">
+        <h3><i class="fa-solid fa-circle-yen"></i> 費用について</h3>
+        <ul>
+          <li>参加費：無料</li>
+          <li>レッスン費：無料</li>
+          <li>衣装・スタジオ費用：事務所負担</li>
+          <li>ライブ・出演費：無料</li>
+          <li>その他詳細は面接時にお伝えします</li>
+        </ul>
+      </div>
+    </div>
+    <div class="req-free-banner">
+      <div class="big">💰 参加費・レッスン費 完全無料！</div>
+      <div class="small">安心して挑戦できます。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑤ Ifamの強み -->
+<section class="strengths" id="strengths">
+  <div class="container">
+    <div class="section-title-wrap">
+      <span class="section-label">OUR STRENGTHS</span>
+      <h2 class="section-title">Ifamを選ぶ理由</h2>
+    </div>
+    <div class="strength-grid">
+      <div class="strength-card">
+        <div class="strength-icon ic-green"><span style="font-size:32px">¥</span></div>
+        <h3>無料で応募</h3>
+        <p>参加費/登録費/レッスン費用はかかりません。</p>
+      </div>
+      <div class="strength-card">
+        <div class="strength-icon ic-pink"><span style="font-size:32px">👗</span></div>
+        <h3>オリジナル衣装</h3>
+        <p>プロデザインのオリジナル衣装を支給します。</p>
+      </div>
+      <div class="strength-card">
+        <div class="strength-icon ic-blue"><span style="font-size:32px">🎓</span></div>
+        <h3>プロ講師</h3>
+        <p>ダンス・ボイトレ講師が丁寧に指導します。</p>
+      </div>
+      <div class="strength-card">
+        <div class="strength-icon ic-yellow"><span style="font-size:32px">✨</span></div>
+        <h3>未経験OK</h3>
+        <p>歌・ダンス未経験でも大歓迎！</p>
+      </div>
+      <div class="strength-card">
+        <div class="strength-icon ic-pink"><span style="font-size:32px">⚡</span></div>
+        <h3>最短3ヶ月デビュー</h3>
+        <p>スピード感あるデビューで早くステージへ。</p>
+      </div>
+      <div class="strength-card">
+        <div class="strength-icon ic-purple"><span style="font-size:32px">🎪</span></div>
+        <h3>大型イベント実績</h3>
+        <p>関西万博・KBS京都など実績ある事務所が後押し。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑥ オーディションの流れ -->
+<section class="flow" id="flow">
+  <div class="container">
+    <div class="section-title-wrap">
+      <span class="section-label">HOW TO APPLY</span>
+      <h2 class="section-title">オーディションの流れ</h2>
+      <p class="section-desc">たった3ステップ！思い立ったらすぐ応募できます。</p>
+    </div>
+    <div class="flow-steps">
+      <div class="flow-step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>📝 書類審査（フォーム送信）</h3>
+          <p>LINEまたはメールで基本情報をお送りください。写真2枚を次の条件で添付してください。<br>・全身とバストアップの2枚<br>・写真加工をしていないもの<br>・スマホの場合はノーマルカメラでの撮影<br>審査結果は1週間以内にご連絡します。</p>
+          <span class="step-tag">✦ 未経験・初心者大歓迎</span>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>🎤 面接・実技審査</h3>
+          <p>大阪市内スタジオにて、簡単な自己PR・歌唱・ダンスを見せていただきます。完成度より<strong>やる気・表情・雰囲気</strong>を重視します。</p>
+          <span class="step-tag">✦ 歌・ダンス未経験でも大丈夫！</span>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>🌟 合格発表・活動スタート</h3>
+          <p>審査後1週間以内に結果をご連絡。合格後はすぐにレッスンを開始し、最短3ヶ月でステージデビューを目指します！</p>
+          <span class="step-tag">✦ 最短3ヶ月でステージへ</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑦ 講師紹介 -->
+<section class="teachers" id="teachers">
+  <div class="container">
+    <div class="section-title-wrap">
+      <span class="section-label">INSTRUCTORS</span>
+      <h2 class="section-title">講師紹介</h2>
+      <p class="section-desc">プロの講師陣があなたの成長を全力でサポートします。</p>
+    </div>
+    <div class="teacher-grid">
+      <div class="teacher-card" onclick="openTeacherPopup('miyaka')">
+        <div class="teacher-photo">
+          <img src="講師プロフ/みやか.jpeg" alt="みやか">
+        </div>
+        <span class="teacher-role">Choreographer / Dancer / Instructor</span>
+        <h3 class="teacher-name">みやか</h3>
+        <p class="teacher-name-en">Miyaka</p>
+        <span class="teacher-more-hint">プロフィール詳細を見る →</span>
+      </div>
+      <div class="teacher-card" onclick="openTeacherPopup('hoodk')">
+        <div class="teacher-photo">
+          <img src="講師プロフ/ほーDK.jpeg" alt="ほーDK">
+        </div>
+        <span class="teacher-role">HipHop / R&amp;B Singer</span>
+        <h3 class="teacher-name">ほーDK</h3>
+        <p class="teacher-name-en"></p>
+        <span class="teacher-more-hint">プロフィール詳細を見る →</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑧ 実績 -->
+<section class="achievements" id="achievements">
+  <div class="container">
+    <div class="section-title-wrap">
+      <span class="section-label">ACHIEVEMENTS</span>
+      <h2 class="section-title">事務所の実績</h2>
+      <p class="section-desc">豊富な実績を持つ事務所があなたの夢を後押しします。</p>
+    </div>
+    <div class="ach-section">
+      <h3><i class="fa-solid fa-calendar-star"></i> イベント制作実績</h3>
+      <div class="ach-tags">
+        <span class="ach-tag"><i class="fa-solid fa-star"></i> 言×THEANSWER 制作協力</span>
+        <span class="ach-tag"><i class="fa-solid fa-ship"></i> 神戸クルーザーイベント</span>
+        <span class="ach-tag"><i class="fa-solid fa-music"></i> SEAMO / RAY イベント</span>
+        <span class="ach-tag"><i class="fa-solid fa-microphone"></i> KEN（元DA PUMP）イベント</span>
+        <span class="ach-tag"><i class="fa-solid fa-location-dot"></i> なんばリバープレイス</span>
+      </div>
+    </div>
+    <div class="ach-section">
+      <h3><i class="fa-solid fa-trophy"></i> 出演実績</h3>
+      <div class="ach-tags">
+        <span class="ach-tag"><i class="fa-solid fa-drumstick-bite"></i> 全肉祭</span>
+        <span class="ach-tag"><i class="fa-solid fa-bowl-food"></i> カレーEXPO</span>
+        <span class="ach-tag"><i class="fa-solid fa-utensils"></i> ラーメンEXPO</span>
+        <span class="ach-tag"><i class="fa-solid fa-earth-asia"></i> 関西万博（EXPO2025）</span>
+        <span class="ach-tag"><i class="fa-solid fa-tv"></i> KBS京都 出演</span>
+        <span class="ach-tag"><i class="fa-solid fa-camera"></i> MERCURY DUO モデル掲載</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑨ プロジェクト一覧 -->
+<section class="projects" id="projects">
+  <div class="container">
+    <div class="section-title-wrap">
+      <span class="section-label">PROJECTS</span>
+      <h2 class="section-title">プロジェクト一覧</h2>
+    </div>
+    <div class="project-grid">
+
+      <!-- Ifam -->
+      <div class="project-card main">
+        <div class="project-logo-wrap">
+          <img src="ロゴ素材/logo_ifam.jpg" alt="Ifam（あいふぁむ）">
+        </div>
+        <div class="project-body">
+          <h3>Ifam（あいふぁむ）</h3>
+          <p>大阪発アイドルグループ。フェス・大型イベント出演を目指す本格派プロジェクト。</p>
+        </div>
+        <span class="project-badge">🎤 オーディション中</span>
+        <i class="fa-solid fa-chevron-right project-arrow"></i>
+      </div>
+
+      <!-- Vfam -->
+      <div class="project-card coming">
+        <div class="project-logo-wrap">
+          <img src="ロゴ素材/logo_vfam_r2.png" alt="Vfam（VTuber部門）">
+        </div>
+        <div class="project-body">
+          <h3>Vfam（VTuber部門）</h3>
+          <p>バーチャルアイドルプロジェクト。詳細は近日公開予定。</p>
+        </div>
+        <span class="project-badge cs">Coming Soon</span>
+      </div>
+
+      <!-- タレント部門 -->
+      <div class="project-card coming">
+        <div class="project-logo-wrap">
+          <img src="ロゴ素材/logo_talent_r2.png" alt="タレント部門">
+        </div>
+        <div class="project-body">
+          <h3>タレント部門</h3>
+          <p>モデル・タレント活動支援部門。詳細は近日公開予定。</p>
+        </div>
+        <span class="project-badge cs">Coming Soon</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="section-title-wrap">
+      <span class="section-label">FAQ</span>
+      <h2 class="section-title">よくある質問</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">歌やダンスが全くできなくても応募できますか？<i class="fa-solid fa-plus faq-icon"></i></div>
+        <div class="faq-a">はい、もちろんです！未経験・初心者の方を大歓迎しています。「やってみたい！」という気持ちが一番大切です。入所後にプロ講師が丁寧に指導します。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">本当に費用はかからないのですか？<i class="fa-solid fa-plus faq-icon"></i></div>
+        <div class="faq-a">はい、参加費・レッスン費・衣装費は一切かかりません。自己負担は交通費のみです。活動していく中で、費用を請求することは一切ありません。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">学生でも応募できますか？<i class="fa-solid fa-plus faq-icon"></i></div>
+        <div class="faq-a">14歳以上の方であれば学生でも応募可能です。未成年の方は保護者の方の同意書が必要となります。学業との両立についても柔軟に対応していますのでご相談ください。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">大阪以外に住んでいても応募できますか？<i class="fa-solid fa-plus faq-icon"></i></div>
+        <div class="faq-a">レッスンや活動が大阪を拠点となるため、大阪に通える方が対象となります。遠方の方もまずはお気軽にご相談ください。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">応募後、どのくらいで連絡がきますか？<i class="fa-solid fa-plus faq-icon"></i></div>
+        <div class="faq-a">書類審査の結果は1週間以内にご連絡いたします。面接・実技審査の結果も審査後1週間以内にお知らせします。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑩ SNS -->
+<section class="sns-section" id="sns">
+  <div class="container">
+    <div class="section-title-wrap">
+      <span class="section-label">FOLLOW US</span>
+      <h2 class="section-title">SNSをフォローする</h2>
+      <p class="section-desc">最新情報・オーディション情報をお届けします</p>
+    </div>
+    <div class="sns-grid">
+      <a href="#" class="sns-btn sns-ig" aria-label="Instagram">
+        <i class="fa-brands fa-instagram"></i>
+        <span>Instagram</span>
+      </a>
+      <a href="#" class="sns-btn sns-yt" aria-label="YouTube">
+        <i class="fa-brands fa-youtube"></i>
+        <span>YouTube</span>
+      </a>
+      <a href="#" class="sns-btn sns-tt" aria-label="TikTok">
+        <i class="fa-brands fa-tiktok"></i>
+        <span>TikTok</span>
+      </a>
+      <a href="#" class="sns-btn sns-th" aria-label="Threads">
+        <i class="fa-brands fa-threads"></i>
+        <span>Threads</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 応募CTA -->
+<section class="cta-section" id="apply">
+  <div class="cta-title">あなたの挑戦を待っています！</div>
+  <div class="cta-sub">参加費・レッスン費無料 ／ 未経験OK ／ 14〜24歳女性</div>
+  <div class="cta-btns">
+    <a href="https://line.me/ti/p/XXX" class="btn-line-cta">
+      <i class="fa-brands fa-line" style="font-size:22px"></i>
+      LINEで無料エントリー
+    </a>
+    <a href="mailto:info@famfs.jp?subject=Ifamオーディション応募" class="btn-mail-cta">
+      <i class="fa-solid fa-envelope"></i>
+      メールで無料エントリー
+    </a>
+  </div>
+  <p class="cta-note">未成年の方は保護者の同意のうえご応募ください ／ 個人情報は厳重に管理します</p>
+</section>
+
+<!-- ⑪ 会社概要 -->
+<section class="company" id="company">
+  <div class="container">
+    <div class="section-title-wrap">
+      <span class="section-label">COMPANY</span>
+      <h2 class="section-title">会社概要</h2>
+    </div>
+    <div class="company-inner">
+      <div class="company-trust">
+        <p>安心して応募していただける事務所を目指しています。<br>費用の請求・強引な勧誘は一切行いません。</p>
+        <span>ご不明な点はいつでもLINEまたはメールでお気軽にお問い合わせください。</span>
+      </div>
+      <table class="company-table">
+        <tr><th>屋号</th><td>FAMFSプロダクション</td></tr>
+        <tr><th>代表</th><td>石田あすか</td></tr>
+        <tr><th>設立</th><td>2025年7月</td></tr>
+        <tr><th>所在地</th><td>〒532-0011<br>大阪市淀川区西中島7-8-36-704</td></tr>
+        <tr><th>事業内容</th><td>
+          音楽・動画配信の企画制作 ／ タレントマネジメント<br>
+          ライブイベント企画・主催 ／ 撮影<br>
+          衣装・ロゴデザイン
+        </td></tr>
+        <tr><th>お問い合わせ</th><td>
+          LINE: <a href="https://line.me/ti/p/XXX" style="color:var(--pink)">公式LINEはこちら</a><br>
+          メール: <a href="mailto:info@famfs.jp" style="color:var(--pink)">info@famfs.jp</a>
+        </td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- フッター -->
+<footer>
+  <!-- ロゴ画像: <img src="logo-famfs-white.png" alt="FAMFSプロダクション" class="footer-logo"> -->
+  <div class="footer-logo">FAMFSプロダクション</div>
+  <div class="footer-sub">大阪発アイドルグループ Ifam オフィシャルサイト</div>
+  <nav class="footer-nav">
+    <a href="#about">Ifamとは</a>
+    <a href="#requirements">募集要項</a>
+    <a href="#flow">応募の流れ</a>
+    <a href="#teachers">講師紹介</a>
+    <a href="#achievements">実績</a>
+    <a href="#company">会社概要</a>
+    <a href="#apply">応募する</a>
+  </nav>
+  <p class="footer-copy">&copy; 2025 FAMFSプロダクション All Rights Reserved.</p>
+</footer>
+
+<!-- ② スクロール追従CTA -->
+<div class="fixed-cta">
+  <a href="https://line.me/ti/p/XXX" class="fixed-line">
+    <i class="fa-brands fa-line" style="font-size:16px"></i>LINEで無料エントリー
+  </a>
+  <a href="mailto:info@famfs.jp?subject=Ifamオーディション応募" class="fixed-mail">
+    <i class="fa-solid fa-envelope"></i>メールで無料エントリー
+  </a>
+</div>
+
+<script>
+// ===== FAQ アコーディオン =====
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+
+// ===== スムーズスクロール =====
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      const offset = 90;
+      const top = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  });
+});
+
+// ===== ヘッダー背景（スクロールで影） =====
+window.addEventListener('scroll', () => {
+  const header = document.querySelector('header');
+  header.style.boxShadow = window.scrollY > 10
+    ? '0 2px 16px rgba(0,0,0,.08)' : 'none';
+});
+</script>
+
+<!-- 講師プロフィールポップアップ -->
+<div class="teacher-popup-overlay hidden" id="teacherPopupOverlay">
+  <div class="teacher-popup-box" id="teacherPopupBox">
+    <button class="teacher-popup-close" id="teacherPopupClose">&times;</button>
+    <div style="text-align:center">
+      <div class="teacher-popup-photo">
+        <img id="teacherPopupImg" src="" alt="">
+      </div>
+      <p class="teacher-popup-name" id="teacherPopupName"></p>
+      <p class="teacher-popup-name-en" id="teacherPopupNameEn"></p>
+      <span class="teacher-popup-role" id="teacherPopupRole"></span>
+    </div>
+    <div class="teacher-popup-body">
+      <p id="teacherPopupText"></p>
+    </div>
+  </div>
+</div>
+
+<script>
+var teacherData = {
+  miyaka: {
+    name: 'みやか',
+    nameEn: 'Miyaka',
+    role: 'Choreographer / Dancer / Instructor',
+    img: '講師プロフ/みやか.jpeg',
+    text: `兵庫県三田市出身（大阪在住）。
+ストリートダンスを軸に、振付・演出・教育まで幅広く手がけるダンサー／振付師。
+
+大阪芸術大学および大学院で舞台芸術を専攻し、成績優秀者として複数回表彰。卒業制作では企画・脚本を担当し優秀賞を受賞。さらに2025年には、舞台芸術分野では異例となる査読付き論文を発表するなど、アカデミックな側面からもダンスを探求。
+
+現在は振付師として、CM・MV・テーマパーク・舞台など幅広い分野で活動。「お客様ファースト」を信念に、ジャンルや経験を問わず楽しめる作品づくりを強みとする。
+
+2025年よりDANCE COMPANY みやか組を設立し、教育現場や全国の現場で指導・演出を展開。即興振付にも対応できる柔軟性と、全国レベルのダンサーとの強いネットワークを持つ。
+
+■ 主な実績
+・大阪芸術大学 成績優秀者表彰（計3回）
+・卒業制作 舞台公演 優秀賞（企画・脚本）
+・査読付き論文発表（2025年）
+・文化庁芸術家派遣事業で学校指導
+・100名以上のダンサー育成実績
+
+■ 主な活動・出演
+・TV / CM / ドラマ / MV / テーマパーク出演多数
+・バックダンサー（MINMI / May J. ほか）
+・USJ・舞台・ミュージカル等の振付・演出
+・全国イベント・フェス出演 / 演出
+
+■ 主な受賞歴（一部）
+・WORLD DANCE COLOSSEUM 優勝
+・DANCE@LIVE FINAL FINALIST
+・waack to the beat（韓国）MVP
+・各種全国大会優勝・入賞多数（20回以上）
+
+■ スキル / 特徴
+・即興振付対応（短納期案件可）
+・WAACKを中心にオールジャンル対応
+・教育・育成・舞台演出まで一貫対応
+
+■ ビジョン
+ダンスを通して「人が輝く瞬間」を創ること。教育・舞台・エンタメを横断し、次世代に繋がる表現を生み出し続ける。`
+  },
+  hoodk: {
+    name: 'ほーDK',
+    nameEn: '',
+    role: 'HipHop / R&B Singer',
+    img: '講師プロフ/ほーDK.jpeg',
+    text: `三重県鳥羽市出身。
+R&B・HipHopを軸に、シンガーとラップを自在に行き来する唯一無二のスタイルを持つアーティスト。
+
+2016年、シンガーユニットJamFlavorとしてavexよりメジャーデビュー。m-flo「come again」カバーが話題となり、テレビ番組・CM・各種タイアップに多数起用。ラジオパーソナリティやプロ野球での国歌斉唱など活動の幅を広げる。
+
+2019年より東京を拠点に移し、ルーツであるR&B / HipHopにフォーカスした作品を発表。2021年には東京五輪スケートボード日本代表・岡本碧優選手の応援ソング、映画『幕が下りたら会いましょう』の主題歌・挿入歌を担当。
+
+2022年、JamFlavor解散後「ほーDK」としてソロ活動を本格始動。遊び心あるリリックと滑らかなフロウで、新たなフェーズへ突入。
+
+■ 主な実績
+・avexよりメジャーデビュー（JamFlavor）
+・m-flo「come again」カバーが話題
+・テレビ番組・CMタイアップ多数
+・プロ野球公式戦 国歌斉唱（オリックス戦ほか）
+・映画『幕が下りたら会いましょう』主題歌・挿入歌
+・東京五輪関連応援ソング担当`
+  }
+};
+
+function openTeacherPopup(key) {
+  var d = teacherData[key];
+  var overlay = document.getElementById('teacherPopupOverlay');
+  document.getElementById('teacherPopupImg').src = d.img;
+  document.getElementById('teacherPopupImg').alt = d.name;
+  document.getElementById('teacherPopupName').textContent = d.name;
+  document.getElementById('teacherPopupNameEn').textContent = d.nameEn;
+  document.getElementById('teacherPopupRole').textContent = d.role;
+  document.getElementById('teacherPopupText').textContent = d.text;
+  overlay.classList.remove('hidden');
+  overlay.style.animation = 'none';
+  overlay.offsetHeight;
+  overlay.style.animation = '';
+}
+
+document.getElementById('teacherPopupClose').addEventListener('click', function() {
+  document.getElementById('teacherPopupOverlay').classList.add('hidden');
+});
+document.getElementById('teacherPopupOverlay').addEventListener('click', function(e) {
+  if (!document.getElementById('teacherPopupBox').contains(e.target)) {
+    this.classList.add('hidden');
+  }
+});
+</script>
+</body>
+</html>
