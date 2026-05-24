@@ -55,77 +55,45 @@ img{max-width:100%;display:block}
   display:flex;
   align-items:center;
   overflow:hidden;
-  background:linear-gradient(
-    125deg,
-    #1a0535 0%,
-    #3b0f7a 35%,
-    #7b2fa0 60%,
-    #c0348e 80%,
-    #e8458a 100%
-  );
+  background:
+    url('hp_topback.png') center top / cover no-repeat;
 }
 
-/* 背景装飾：左下から広がる光彩 */
+/* 全体暗幕オーバーレイ（画像の上に重ねて文字を読みやすく） */
 .hero::before{
   content:'';
   position:absolute;
-  bottom:-10%;left:-5%;
-  width:70%;height:80%;
-  background:radial-gradient(ellipse,rgba(255,230,0,.10) 0%,transparent 65%);
+  inset:0;
+  background:rgba(10,2,28,.52);
   pointer-events:none;
+  z-index:0;
 }
 
-/* 右側グラデーションフェード（写真エリアとのつなぎ） */
+/* テキストエリア左側：さらに強調ぼかし */
 .hero::after{
   content:'';
   position:absolute;
-  top:0;right:0;
-  width:50%;height:100%;
-  background:linear-gradient(to left, rgba(180,60,160,.18) 0%, transparent 80%);
-  pointer-events:none;
-}
-
-/* 人物写真エリア（右側） */
-.hero-photo{
-  position:absolute;
-  right:0;top:0;
-  width:48%;
-  height:100%;
-  display:flex;
-  align-items:flex-end;
-  justify-content:center;
-}
-.hero-photo img{
-  height:100%;
-  width:100%;
-  object-fit:cover;
-  object-position:top center;
-  opacity:.88;
-}
-.hero-photo-placeholder{
-  width:100%;
-  height:100%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
-  gap:12px;
-  background:linear-gradient(160deg,rgba(120,50,180,.3),rgba(220,80,150,.25));
-  border-left:1px dashed rgba(255,255,255,.15);
-  color:rgba(255,255,255,.35);
-  font-size:13px;
-  letter-spacing:.06em;
-}
-.hero-photo-placeholder i{font-size:40px;opacity:.4}
-
-/* テキストエリアに薄暗いオーバーレイ（左側） */
-.hero-overlay{
-  position:absolute;
   top:0;left:0;
-  width:60%;height:100%;
-  background:linear-gradient(to right,rgba(15,4,36,.72) 0%,rgba(15,4,36,.42) 60%,transparent 100%);
+  width:70%;height:100%;
+  background:linear-gradient(to right,rgba(10,2,28,.55) 0%,rgba(10,2,28,.25) 60%,transparent 100%);
   pointer-events:none;
-  z-index:1;
+  z-index:0;
+}
+
+/* hero-photo は非表示（背景画像が代替） */
+.hero-photo{display:none}
+.hero-photo-placeholder{display:none}
+
+/* テキストエリア用オーバーレイ（旧 .hero-overlay は不要化） */
+.hero-overlay{display:none}
+
+/* テキストエリアに半透明の暗背景を追加 */
+.hero-content{
+  background:rgba(10,2,28,.55);
+  border-radius:16px;
+  backdrop-filter:blur(2px);
+  -webkit-backdrop-filter:blur(2px);
+  padding:40px 48px 44px !important;
 }
 
 /* コンテンツラッパー */
@@ -164,14 +132,12 @@ img{max-width:100%;display:block}
   letter-spacing:.04em;
   margin-bottom:28px;
   color:#fff;
-  text-shadow:0 2px 24px rgba(0,0,0,.35);
+  text-shadow:0 2px 16px rgba(0,0,0,.7),0 4px 32px rgba(0,0,0,.5);
 }
 .hero-catch-main .line1{
   display:block;
-  background:linear-gradient(90deg,#ffe600,#ffb300);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  background-clip:text;
+  color:#FFE600;
+  text-shadow:0 2px 12px rgba(0,0,0,.8),0 0 32px rgba(255,180,0,.4);
 }
 
 /* サブキャッチ */
@@ -179,9 +145,9 @@ img{max-width:100%;display:block}
   font-size:clamp(14px,1.8vw,18px);
   font-weight:500;
   line-height:1.9;
-  color:rgba(255,255,255,.88);
-  text-shadow:0 1px 8px rgba(0,0,0,.4);
-  border-left:3px solid rgba(255,230,0,.6);
+  color:rgba(255,255,255,.95);
+  text-shadow:0 1px 12px rgba(0,0,0,.7);
+  border-left:3px solid rgba(255,230,0,.8);
   padding-left:16px;
 }
 
@@ -421,6 +387,7 @@ img{max-width:100%;display:block}
   display:flex;
   align-items:flex-end;
   justify-content:center;
+  transform:translateX(-40px);
 }
 
 /* 人物写真コンテナ */
@@ -432,11 +399,24 @@ img{max-width:100%;display:block}
   align-items:flex-end;
   justify-content:center;
 }
-.audition-photo-frame img{
-  height:480px;
+.audition-photo-frame a{
+  position:relative;
+  display:inline-block;
+}
+.catch-person{
+  height:560px;
   width:auto;
   object-fit:contain;
   filter:drop-shadow(4px 0 24px rgba(180,60,120,.35));
+  display:block;
+}
+.catch-balloon{
+  position:absolute;
+  width:70%;
+  height:auto;
+  top:-2%;
+  left:-50%;
+  filter:drop-shadow(2px 2px 6px rgba(0,0,0,.15));
 }
 .audition-photo-placeholder{
   width:260px;
@@ -473,46 +453,77 @@ img{max-width:100%;display:block}
 @media(max-width:767px){
   .logo-bar img{height:30px}
 
-  .hero{min-height:100svh;align-items:flex-start}
+  .hero{min-height:auto;height:auto;align-items:flex-start;padding:0 0 32px;}
 
   .hero-photo{
     width:100%;height:50%;
     top:auto;bottom:0;
     opacity:.5;
   }
-  .hero-photo-placeholder{border-left:none}
+  .hero{
+    background-position:center top;
+  }
 
-  .hero-overlay{
+  .hero::before{
+    background:rgba(10,2,28,.60);
+  }
+
+  .hero::after{
     width:100%;
-    background:linear-gradient(to bottom,rgba(15,4,36,.75) 0%,rgba(15,4,36,.55) 60%,rgba(15,4,36,.8) 100%);
+    background:linear-gradient(to bottom,rgba(10,2,28,.3) 0%,transparent 40%,rgba(10,2,28,.4) 100%);
   }
 
   .hero-content{
-    padding:100px 24px 60px;
-    max-width:100%;
+    padding:24px 20px 28px !important;
+    margin:72px 16px 0;
+    max-width:calc(100% - 32px);
+    border-radius:12px;
   }
 
   .hero-catch-sub{font-size:14px}
 
-  .hero-scroll{left:24px;bottom:24px}
+  .hero-scroll{display:none}
 
   /* セクション2 スマホ */
   .audition-mv-inner{
-    grid-template-columns:1fr;
-    padding:40px 20px 32px;
+    grid-template-columns:1fr 130px;
+    padding:40px 16px 32px;
     min-height:auto;
-    gap:20px;
+    gap:12px;
+    align-items:center;
   }
   .audition-mv-right{
-    min-height:240px;
-    order:-1;
+    position:static;
+    transform:none;
+    width:130px;
+    min-height:auto;
+    height:auto;
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    align-self:stretch;
   }
-  .audition-photo-placeholder{width:180px;height:240px}
-  .audition-photo-frame img{height:240px}
-  .audition-vertical{
-    right:4px;
-    font-size:12px;
+  .audition-photo-frame{
+    width:100%;
+    height:100%;
+    justify-content:center;
+    align-items:flex-end;
   }
+  .audition-photo-frame a{
+    display:inline-block;
+  }
+  .catch-person{
+    height:260px;
+    width:auto;
+    filter:drop-shadow(-2px 0 12px rgba(180,60,120,.3));
+  }
+  .catch-balloon{
+    width:60%;
+    top:-8%;
+    left:-15%;
+    right:auto;
+  }
+  .audition-vertical{display:none}
   .audition-title{font-size:clamp(40px,12vw,64px)}
   .audition-btns{max-width:100%}
   .deco-circle.c1,.deco-circle.c2{display:none}
@@ -985,6 +996,14 @@ img{max-width:100%;display:block}
   background:linear-gradient(to bottom,transparent,#c8c4d8 10%,#c8c4d8 90%,transparent);
 }
 
+/* 代表者写真 */
+.phil-photo{
+  display:block;
+  width:160px;
+  height:auto;
+  margin-top:20px;
+}
+
 /* 代表者名 */
 .phil-name{
   margin-top:16px;
@@ -1410,6 +1429,13 @@ img{max-width:100%;display:block}
   border-radius:12px;
   box-shadow:0 12px 48px rgba(0,0,0,.5);
 }
+@media(min-width:768px){
+  .popup-box img{
+    max-height:85vh;
+    width:auto;
+    max-width:100%;
+  }
+}
 .popup-close{
   position:absolute;
   top:-18px;
@@ -1528,11 +1554,10 @@ img{max-width:100%;display:block}
     <!-- Layer3：人物ビジュアル + 縦組み -->
     <div class="audition-mv-right">
       <div class="audition-photo-frame">
-        <!-- 実写真: <img src="audition-photo.png" alt="オーディション"> -->
-        <div class="audition-photo-placeholder">
-          <i class="fa-regular fa-image"></i>
-          人物写真<br>（準備中）
-        </div>
+        <a href="famdsHP_audition/audition.html">
+          <img src="audition_catch1.png" alt="オーディション" class="catch-person">
+          <img src="audition_catch2.png" alt="吹き出し" class="catch-balloon">
+        </a>
       </div>
       <span class="audition-vertical">第１期生 大募集中</span>
     </div>
@@ -1724,6 +1749,7 @@ img{max-width:100%;display:block}
           <p class="phil-label">MESSAGE</p>
           <h3 class="phil-title">先輩、私をプロへ。</h3>
           <p class="phil-text">人の中でも責任感があって、次世代を育てる人材へと成長してほしい。FAMFSプロダクションは、あなたの夢の伴走者でありたいと思っています。一緒に、時代を動かしましょう。</p>
+          <img src="ishida_asuka.png" alt="代表 石田あすか" class="phil-photo">
           <div class="phil-name">
             <span class="phil-name-role">代表</span>
             石田あすか
@@ -1854,9 +1880,7 @@ img{max-width:100%;display:block}
 <div class="popup-overlay" id="popupOverlay">
   <div class="popup-box" id="popupBox">
     <button class="popup-close" id="popupClose" aria-label="閉じる">&times;</button>
-    <a href="famdsHP_audition/audition.html">
-      <img src="audition_yellow.png" alt="第1期生オーディション開催中">
-    </a>
+    <div id="popupContent"></div>
   </div>
 </div>
 
@@ -1865,9 +1889,54 @@ img{max-width:100%;display:block}
   var overlay = document.getElementById('popupOverlay');
   var box     = document.getElementById('popupBox');
   var btn     = document.getElementById('popupClose');
+  var content = document.getElementById('popupContent');
+
+  var isPC = window.innerWidth >= 768;
+
+  if(isPC){
+    // PCはランダムで画像か動画を表示
+    if(Math.random() < 0.5){
+      // 画像
+      var link = document.createElement('a');
+      link.href = 'famdsHP_audition/audition.html';
+      var img = document.createElement('img');
+      img.src = 'audition_popup_yoko.png';
+      img.alt = '第1期生オーディション開催中';
+      link.appendChild(img);
+      content.appendChild(link);
+    } else {
+      // 動画
+      var link = document.createElement('a');
+      link.href = 'famdsHP_audition/audition.html';
+      var video = document.createElement('video');
+      video.src = 'audition_popup_yoko.mov';
+      video.autoplay = true;
+      video.muted = true;
+      video.loop = true;
+      video.playsInline = true;
+      video.style.width = '100%';
+      video.style.display = 'block';
+      video.style.borderRadius = '12px';
+      video.style.boxShadow = '0 12px 48px rgba(0,0,0,.5)';
+      link.appendChild(video);
+      content.appendChild(link);
+    }
+  } else {
+    // スマホは画像固定
+    var link = document.createElement('a');
+    link.href = 'famdsHP_audition/audition.html';
+    var img = document.createElement('img');
+    img.src = 'audition_popup.png';
+    img.alt = '第1期生オーディション開催中';
+    link.appendChild(img);
+    content.appendChild(link);
+  }
 
   function close(){
     overlay.classList.add('hidden');
+    // 動画があれば停止
+    var v = box.querySelector('video');
+    if(v) v.pause();
   }
 
   btn.addEventListener('click', function(e){
