@@ -473,41 +473,47 @@ img{max-width:100%;display:block}
 
   /* セクション2 スマホ */
   .audition-mv-inner{
-    grid-template-columns:1fr 130px;
-    padding:40px 16px 32px;
+    grid-template-columns:1fr 120px;
+    padding:32px 16px 32px 16px;
     min-height:auto;
-    gap:12px;
+    gap:0;
     align-items:center;
   }
   .audition-mv-right{
     position:static;
-    transform:none;
-    width:130px;
+    transform:translate(-140px, 90px);
+    width:auto;
     min-height:auto;
-    height:auto;
+    height:100%;
     display:flex;
-    align-items:flex-end;
+    align-items:center;
     justify-content:center;
     align-self:stretch;
   }
   .audition-photo-frame{
-    width:100%;
+    width:auto;
     height:100%;
+    display:flex;
+    align-items:center;
     justify-content:center;
-    align-items:flex-end;
   }
   .audition-photo-frame a{
+    position:relative;
     display:inline-block;
   }
   .catch-person{
-    height:260px;
-    width:auto;
+    width:180px;
+    max-width:none;
+    height:auto;
+    display:block;
     filter:drop-shadow(-2px 0 12px rgba(180,60,120,.3));
   }
   .catch-balloon{
-    width:60%;
-    top:-8%;
-    left:-15%;
+    width:109px;
+    height:auto;
+    top:-67px;
+    left:50%;
+    transform:translateX(-50%);
     right:auto;
   }
   .audition-vertical{display:none}
@@ -1515,7 +1521,7 @@ img{max-width:100%;display:block}
 
       <div class="audition-date-wrap">
         <span class="audition-date-label">応募期間</span>
-        <span class="audition-date-body">6.1 〜 6.30 まで</span>
+        <span class="audition-date-body">5/31〜6/30 まで</span>
       </div>
 
       <ul class="audition-conds">
@@ -1530,8 +1536,8 @@ img{max-width:100%;display:block}
         <a href="https://lin.ee/ShCMpuC" class="btn-line-mv">
           <i class="fa-brands fa-line"></i>LINEで無料エントリー
         </a>
-        <a href="mailto:info@famfs.jp" class="btn-mail-mv">
-          <i class="fa-solid fa-envelope"></i>メールで無料エントリー
+        <a href="https://forms.gle/vQFVZkmxWorQ9Pf66" class="btn-mail-mv">
+          <i class="fa-solid fa-clipboard-list"></i>フォームで無料エントリー
         </a>
       </div>
     </div>
@@ -1544,7 +1550,6 @@ img{max-width:100%;display:block}
           <img src="audition_catch2.png" alt="吹き出し" class="catch-balloon">
         </a>
       </div>
-      <span class="audition-vertical">第１期生 大募集中</span>
     </div>
 
   </div>
@@ -1572,8 +1577,8 @@ img{max-width:100%;display:block}
         <a href="https://lin.ee/ShCMpuC" class="btn-recruit-line">
           <i class="fa-brands fa-line"></i>LINEで無料エントリー
         </a>
-        <a href="mailto:info@famfs.jp" class="btn-recruit-mail">
-          <i class="fa-solid fa-envelope"></i>メールで無料エントリー
+        <a href="https://forms.gle/vQFVZkmxWorQ9Pf66" class="btn-recruit-mail">
+          <i class="fa-solid fa-clipboard-list"></i>フォームで無料エントリー
         </a>
       </div>
     </div>
@@ -1640,12 +1645,12 @@ img{max-width:100%;display:block}
             <span>第一プロジェクト｜アイドル部門</span>
             Ifam（あいふぁむ）
           </div>
-          <span class="project-main-badge">🎤 オーディション中</span>
+          <span class="project-main-badge">👆 詳細はこちらをクリック</span>
           <div class="project-main-desc">
             <strong>第一弾プロジェクト</strong>
             新規アイドルオーディション開催中<br>
-            応募期間 5/30〜6/30 23:59まで<br><br>
-            LINEまたはメールで簡単応募
+            応募期間　5/31〜6/30<br><br>
+            LINEまたはフォームで簡単応募
             <span class="desc-note">オーディション費用／レッスン費用／登録費用などは一切ございません。<br>「やってみたい」の気持ちだけでOK</span>
           </div>
         </div>
@@ -1806,8 +1811,8 @@ img{max-width:100%;display:block}
           <a href="https://lin.ee/ShCMpuC" class="btn-footer-line">
             <i class="fa-brands fa-line"></i>LINEで無料エントリー
           </a>
-          <a href="mailto:info@famfs.jp" class="btn-footer-mail">
-            <i class="fa-solid fa-envelope"></i>メールでお問い合わせ
+          <a href="https://forms.gle/vQFVZkmxWorQ9Pf66" class="btn-footer-mail">
+            <i class="fa-solid fa-clipboard-list"></i>フォームで無料エントリー
           </a>
         </div>
       </div>
@@ -1907,11 +1912,13 @@ img{max-width:100%;display:block}
       content.appendChild(link);
     }
   } else {
-    // スマホは画像固定
+    // スマホは3枚からランダムで表示
+    var spImages = ['audition_popup_1.png', 'audition_popup_2.png', 'audition_popup_3.png', 'audition_popup_4.png'];
+    var spSrc = spImages[Math.floor(Math.random() * spImages.length)];
     var link = document.createElement('a');
     link.href = 'famdsHP_audition/audition.html';
     var img = document.createElement('img');
-    img.src = 'audition_popup.png';
+    img.src = spSrc;
     img.alt = '第1期生オーディション開催中';
     link.appendChild(img);
     content.appendChild(link);
