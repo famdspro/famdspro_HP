@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>FAMFSプロダクション｜大阪発アイドル事務所</title>
+<title>FAMDSプロダクション｜大阪発アイドル事務所</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -175,13 +175,13 @@ img{max-width:100%;display:block}
 ============================================ */
 .audition-mv{
   position:relative;
-  background:#FFE000;
+  background:linear-gradient(135deg,#fff0f5 0%,#ffe4ef 50%,#ffd6e8 100%);
   overflow:hidden;
   color:#1a0535;
   padding-bottom:0;
 }
 
-/* Layer1：背景装飾（CSSシェイプ） */
+/* Layer1：背景装飾 */
 .audition-mv-deco{
   position:absolute;inset:0;
   pointer-events:none;
@@ -194,8 +194,8 @@ img{max-width:100%;display:block}
   top:-18%;right:-10%;
   width:55vw;height:55vw;
   border-radius:50%;
-  background:radial-gradient(circle,#FF8C00 0%,#FF4FA0 60%,transparent 80%);
-  opacity:.55;
+  background:radial-gradient(circle,#ffb3d1 0%,#ff80b3 60%,transparent 80%);
+  opacity:.35;
 }
 /* 左下の中円 */
 .audition-mv-deco::after{
@@ -204,45 +204,44 @@ img{max-width:100%;display:block}
   bottom:-12%;left:-6%;
   width:36vw;height:36vw;
   border-radius:50%;
-  background:radial-gradient(circle,#ff4fa0 0%,#ffe000 70%,transparent 90%);
-  opacity:.35;
+  background:radial-gradient(circle,#ff80b3 0%,#ffc8de 70%,transparent 90%);
+  opacity:.3;
 }
-/* 散らばる装飾円（SVGで生成） */
+/* 散らばる装飾円 */
 .deco-circle{
   position:absolute;
   border-radius:50%;
-  opacity:.22;
+  opacity:.25;
 }
-.deco-circle.c1{width:60px;height:60px;background:#FF8C00;top:8%;left:5%}
-.deco-circle.c2{width:32px;height:32px;background:#ff4fa0;top:22%;left:14%}
-.deco-circle.c3{width:90px;height:90px;background:#FF8C00;bottom:10%;right:8%}
-.deco-circle.c4{width:20px;height:20px;background:#1a0535;top:55%;left:3%}
+.deco-circle.c1{width:60px;height:60px;background:#ff80b3;top:8%;left:5%}
+.deco-circle.c2{width:32px;height:32px;background:#ffb3d1;top:22%;left:14%}
+.deco-circle.c3{width:90px;height:90px;background:#ff80b3;bottom:10%;right:8%}
+.deco-circle.c4{width:20px;height:20px;background:#d42a74;top:55%;left:3%}
 
-/* ★スター装飾 */
+/* ハート装飾 */
 .deco-star{
   position:absolute;
   font-size:22px;
-  color:#FF8C00;
-  opacity:.6;
-  font-family:'Noto Sans JP',sans-serif;
+  color:#ff80b3;
+  opacity:.65;
   line-height:1;
 }
 .deco-star.s1{top:6%;left:32%;font-size:28px}
 .deco-star.s2{top:18%;right:36%;font-size:18px}
 .deco-star.s3{bottom:12%;left:42%;font-size:24px}
-.deco-star.s4{bottom:20%;right:28%;font-size:16px;color:#1a0535;opacity:.3}
+.deco-star.s4{bottom:20%;right:28%;font-size:16px;color:#d42a74;opacity:.35}
 
-/* 斜め帯（上端） */
+/* 上端ボーダー帯 */
 .audition-mv-stripe{
   position:absolute;
   top:0;left:0;right:0;
   height:6px;
   background:repeating-linear-gradient(
     90deg,
-    #FF8C00 0px,#FF8C00 20px,
-    #FFE000 20px,#FFE000 40px,
-    #ff4fa0 40px,#ff4fa0 60px,
-    #FFE000 60px,#FFE000 80px
+    #ff80b3 0px,#ff80b3 20px,
+    #ffc8de 20px,#ffc8de 40px,
+    #d42a74 40px,#d42a74 60px,
+    #ffc8de 60px,#ffc8de 80px
   );
 }
 
@@ -265,20 +264,8 @@ img{max-width:100%;display:block}
   display:flex;flex-direction:column;align-items:flex-start;
 }
 
-/* バッジ */
-.audition-badge{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  background:#1a0535;
-  color:#FFE000;
-  font-size:12px;font-weight:900;
-  letter-spacing:.1em;
-  padding:6px 18px;
-  border-radius:999px;
-  margin-bottom:20px;
-}
-.audition-badge::before{content:'★';font-size:13px}
+/* バッジ（削除済みのため非表示） */
+.audition-badge{display:none}
 
 /* メイン見出し */
 .audition-title{
@@ -288,7 +275,7 @@ img{max-width:100%;display:block}
   line-height:1.05;
   letter-spacing:-.01em;
   color:#1a0535;
-  text-shadow:4px 4px 0 rgba(255,140,0,.35);
+  text-shadow:3px 3px 0 rgba(212,42,116,.2);
   margin-bottom:24px;
 }
 .audition-title .t-pink{
@@ -307,7 +294,7 @@ img{max-width:100%;display:block}
 }
 .audition-date-label{
   background:#1a0535;
-  color:#FFE000;
+  color:#ffc8de;
   font-size:11px;font-weight:700;
   letter-spacing:.08em;
   padding:5px 12px;
@@ -315,7 +302,7 @@ img{max-width:100%;display:block}
   white-space:nowrap;
 }
 .audition-date-body{
-  background:#FF8C00;
+  background:#d42a74;
   color:#fff;
   font-family:'Zen Maru Gothic',sans-serif;
   font-size:clamp(18px,2.8vw,26px);
@@ -343,8 +330,8 @@ img{max-width:100%;display:block}
   line-height:1.5;
 }
 .audition-conds li::before{
-  content:'★';
-  color:#FF8C00;
+  content:'♡';
+  color:#d42a74;
   font-size:14px;
   flex-shrink:0;
 }
@@ -387,7 +374,7 @@ img{max-width:100%;display:block}
   display:flex;
   align-items:flex-end;
   justify-content:center;
-  transform:translateX(-40px);
+  transform:translate(-10px, 30px);
 }
 
 /* 人物写真コンテナ */
@@ -524,7 +511,7 @@ img{max-width:100%;display:block}
     right:auto;
   }
   .audition-vertical{display:none}
-  .audition-title{font-size:clamp(40px,12vw,64px)}
+  .audition-title{font-size:clamp(40px,12vw,64px);width:100vw;margin-left:calc(-16px);padding-left:16px;box-sizing:border-box;}
   .audition-btns{max-width:100%}
   .deco-circle.c1,.deco-circle.c2{display:none}
 }
@@ -1464,7 +1451,7 @@ img{max-width:100%;display:block}
 <!-- ① ロゴ帯 -->
 <div id="top"></div>
 <div class="logo-bar">
-  <img src="ロゴ画像素材/logo_famdpro.png" alt="FAMFSプロダクション">
+  <img src="ロゴ画像素材/logo_famdpro.png" alt="FAMDSプロダクション">
 </div>
 
 <!-- ① ヒーロー -->
@@ -1512,25 +1499,23 @@ img{max-width:100%;display:block}
   <div class="deco-circle c2"></div>
   <div class="deco-circle c3"></div>
   <div class="deco-circle c4"></div>
-  <span class="deco-star s1">★</span>
-  <span class="deco-star s2">★</span>
-  <span class="deco-star s3">★</span>
-  <span class="deco-star s4">★</span>
+  <span class="deco-star s1">♡</span>
+  <span class="deco-star s2">♡</span>
+  <span class="deco-star s3">◯</span>
+  <span class="deco-star s4">♡</span>
 
   <div class="audition-mv-inner">
 
     <!-- Layer2：テキスト -->
     <div class="audition-mv-left">
-      <div class="audition-badge">FAMFSプロダクション 第1期生募集</div>
-
       <h2 class="audition-title">
-        第1期生<br>
+        新規アイドル<br>
         <span class="t-pink">オーディション</span>
       </h2>
 
       <div class="audition-date-wrap">
         <span class="audition-date-label">応募期間</span>
-        <span class="audition-date-body">5.20 〜 6.20 まで</span>
+        <span class="audition-date-body">6.1 〜 6.30 まで</span>
       </div>
 
       <ul class="audition-conds">
@@ -1574,12 +1559,12 @@ img{max-width:100%;display:block}
     <!-- 左カラム -->
     <div class="recruit-left">
       <h2 class="recruit-heading">
-        <span class="sub">FAMFSプロダクション</span>
+        <span class="sub">FAMDSプロダクション</span>
         第一弾新規プロジェクト<br>アイドル育成始動
       </h2>
       <hr class="recruit-divider">
       <div class="recruit-body">
-        <p>FAMFSプロダクションは、大阪を拠点に次世代のアイドル・VTuber・タレントを育成する新興プロダクションです。</p>
+        <p>FAMDSプロダクションは、大阪を拠点に次世代のアイドル・VTuber・タレントを育成する新興プロダクションです。</p>
         <p>第一弾プロジェクトとして、大阪発アイドルグループ「Ifam（あいふぁむ）」の第1期生を広く募集します。未経験の方も大歓迎。参加費・レッスン費は完全無料で、衣装や舞台制作もプロダクションが全面サポートします。</p>
         <p>フェスや大型イベントへの出演を目標に、本格的なアイドル活動をゼロから始めてみませんか。あなたの「やってみたい」という気持ちが、一番大切な資格です。</p>
       </div>
@@ -1603,7 +1588,7 @@ img{max-width:100%;display:block}
         <div class="news-list">
           <div class="news-item">
             <span class="news-date">2026.05.15</span>
-            <span class="news-title">FAMFSプロダクション公式サイトをオープンしました</span>
+            <span class="news-title">FAMDSプロダクション公式サイトをオープンしました</span>
           </div>
           <div class="news-item">
             <span class="news-date">2026.05.20</span>
@@ -1709,7 +1694,7 @@ img{max-width:100%;display:block}
 <section class="philosophy" id="philosophy">
   <div class="philosophy-inner">
 
-    <h2 class="philosophy-section-heading">FAMFSプロダクション　プロダクション理念</h2>
+    <h2 class="philosophy-section-heading">FAMDSプロダクション　プロダクション理念</h2>
 
     <div class="philosophy-grid">
 
@@ -1719,7 +1704,7 @@ img{max-width:100%;display:block}
         <div class="phil-block">
           <p class="phil-label">ABOUT</p>
           <h3 class="phil-title">夢を、現実に。</h3>
-          <p class="phil-text">FAMFSプロダクションは、大阪を拠点に才能を支え育て、世代を超える影響力へと導くプロダクションです。アイドル・VTuber・タレントの育成を通じて、次世代のエンターテインメントを創造します。</p>
+          <p class="phil-text">FAMDSプロダクションは、大阪を拠点に才能を支え育て、世代を超える影響力へと導くプロダクションです。アイドル・VTuber・タレントの育成を通じて、次世代のエンターテインメントを創造します。</p>
         </div>
 
         <div class="phil-block">
@@ -1731,7 +1716,7 @@ img{max-width:100%;display:block}
         <div class="phil-block">
           <p class="phil-label">VISION</p>
           <h3 class="phil-title">大阪発、<br>世界へ届ける。</h3>
-          <p class="phil-text">地元大阪から始まり、フェスや大型イベントを経て、日本全国・そして世界へ響く存在を輩出すること。それがFAMFSプロダクションの描く未来です。</p>
+          <p class="phil-text">地元大阪から始まり、フェスや大型イベントを経て、日本全国・そして世界へ響く存在を輩出すること。それがFAMDSプロダクションの描く未来です。</p>
         </div>
 
       </div>
@@ -1748,7 +1733,7 @@ img{max-width:100%;display:block}
         <div class="phil-block">
           <p class="phil-label">MESSAGE</p>
           <h3 class="phil-title">先輩、私をプロへ。</h3>
-          <p class="phil-text">人の中でも責任感があって、次世代を育てる人材へと成長してほしい。FAMFSプロダクションは、あなたの夢の伴走者でありたいと思っています。一緒に、時代を動かしましょう。</p>
+          <p class="phil-text">人の中でも責任感があって、次世代を育てる人材へと成長してほしい。FAMDSプロダクションは、あなたの夢の伴走者でありたいと思っています。一緒に、時代を動かしましょう。</p>
           <img src="ishida_asuka.png" alt="代表 石田あすか" class="phil-photo">
           <div class="phil-name">
             <span class="phil-name-role">代表</span>
@@ -1770,7 +1755,7 @@ img{max-width:100%;display:block}
       <!-- 左：ロゴ＋実績 -->
       <div class="footer-left">
         <div class="footer-logo-wrap">
-          <img src="ロゴ画像素材/logo_famdpro.png" alt="FAMFSプロダクション">
+          <img src="ロゴ画像素材/logo_famdpro.png" alt="FAMDSプロダクション">
         </div>
 
         <div class="achievement-block">
@@ -1839,7 +1824,7 @@ img{max-width:100%;display:block}
     <table class="company-table">
       <tr>
         <th>屋号</th>
-        <td>FAMFSプロダクション</td>
+        <td>FAMDSプロダクション</td>
       </tr>
       <tr>
         <th>代表</th>
@@ -1873,7 +1858,7 @@ img{max-width:100%;display:block}
     <a href="#philosophy">プロダクション理念</a>
     <a href="famdsHP_audition/audition.html" class="nav-audition">🎤 オーディション</a>
   </nav>
-  <p class="footer-copy">&copy; 2025 FAMFSプロダクション All Rights Reserved.</p>
+  <p class="footer-copy">&copy; 2025 FAMDSプロダクション All Rights Reserved.</p>
 </div>
 
 <!-- ポップアップモーダル -->
