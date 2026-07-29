@@ -1873,35 +1873,18 @@ img{max-width:100%;display:block}
   var isPC = window.innerWidth >= 768;
 
   if(isPC){
-    // PCはランダムで画像か動画を表示
-    if(Math.random() < 0.5){
-      // 画像
-      var link = document.createElement('a');
-      link.href = 'famdsHP_audition/audition.html';
-      var img = document.createElement('img');
-      img.src = 'audition_popup_yoko.png';
-      img.alt = '第1期生オーディション開催中';
-      link.appendChild(img);
-      content.appendChild(link);
-    } else {
-      // 動画
-      var link = document.createElement('a');
-      link.href = 'famdsHP_audition/audition.html';
-      var video = document.createElement('video');
-      video.src = 'audition_popup_yoko.mov';
-      video.autoplay = true;
-      video.muted = true;
-      video.loop = true;
-      video.playsInline = true;
-      video.style.width = '100%';
-      video.style.display = 'block';
-      video.style.borderRadius = '12px';
-      video.style.boxShadow = '0 12px 48px rgba(0,0,0,.5)';
-      link.appendChild(video);
-      content.appendChild(link);
-    }
+    // PCは2枚からランダムで表示
+    var pcImages = ['audition_popup_yoko_1.png', 'audition_popup_yoko_2.jpeg'];
+    var pcSrc = pcImages[Math.floor(Math.random() * pcImages.length)];
+    var link = document.createElement('a');
+    link.href = 'famdsHP_audition/audition.html';
+    var img = document.createElement('img');
+    img.src = pcSrc;
+    img.alt = '第1期生オーディション開催中';
+    link.appendChild(img);
+    content.appendChild(link);
   } else {
-    // スマホは3枚からランダムで表示
+    // スマホは4枚からランダムで表示
     var spImages = ['audition_popup_1.png', 'audition_popup_2.png', 'audition_popup_3.png', 'audition_popup_4.png'];
     var spSrc = spImages[Math.floor(Math.random() * spImages.length)];
     var link = document.createElement('a');
