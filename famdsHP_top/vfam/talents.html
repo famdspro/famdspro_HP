@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>タレント一覧 | Vfam（ぶいふぁむ）｜FAMDSプロダクション VTuber部門</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+/* ============================================================
+   Vfam タレント一覧
+   にじさんじのタレント一覧UIの構成を踏襲：
+     ロゴ帯（固定ヘッダー） → ページタイトル → 絞り込みピルタブ
+     → 並び替えボタン → 丸アイコンのカードグリッド → フッター
+   ルート font-size を 10px にして rem を「1rem = 10px」で扱う
+   （にじさんじ側と同じスケール感で数値を移植するため）
+============================================================ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{font-size:62.5%}          /* 1rem = 10px */
+body{
+  font-family:'Noto Sans JP',sans-serif;
+  font-size:1.6rem;
+  color:#2d2d2d;
+  background:#fdfdfd;
+  overflow-x:hidden;
+}
+a{text-decoration:none;color:inherit}
+img,svg{max-width:100%;display:block}
+button{font-family:inherit;background:none;border:none;cursor:pointer}
+
+/* ── 虹色ライン（にじさんじの rainbowLine 相当をVfamカラーで） ── */
+.rainbow-line{
+  height:.4rem;
+  background:linear-gradient(90deg,#00e8a2,#00a3ff 24%,#b61cff 58%,#ea193e 87%,#fdc500);
+}
+
+/* ============================================================
+   ヘッダー（index.html のロゴ帯トーンを踏襲しつつ白基調）
+============================================================ */
+.site-header{
+  position:fixed;
+  top:0;left:0;right:0;
+  z-index:100;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  box-shadow:0 .1rem 1.2rem rgba(45,45,45,.08);
+}
+.site-header-inner{
+  max-width:120rem;
+  margin:0 auto;
+  padding:1rem 2.4rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:2rem;
+}
+.header-logo{display:flex;align-items:center;gap:1.2rem}
+.header-logo img{height:3.2rem;width:auto;object-fit:contain}
+.header-logo-divider{
+  width:.1rem;height:2.4rem;
+  background:rgba(45,45,45,.15);
+}
+.header-logo-vfam{
+  font-family:'Montserrat','Noto Sans JP',sans-serif;
+  font-weight:900;
+  font-size:1.8rem;
+  letter-spacing:.06em;
+  color:#1a88a8;
+}
+.header-nav{display:flex;align-items:center;gap:2.4rem}
+.header-nav a{
+  font-size:1.4rem;
+  font-weight:700;
+  color:#2d2d2d;
+  transition:opacity .2s;
+}
+.header-nav a:hover{opacity:.6}
+.header-nav a.current{color:#1a88a8}
+@media(max-width:767px){
+  .site-header-inner{padding:.8rem 1.6rem;gap:1rem}
+  .header-logo{gap:.8rem;min-width:0}
+  .header-logo img{height:2.2rem}
+  .header-logo-divider{height:1.8rem}
+  .header-logo-vfam{font-size:1.4rem}
+  .header-nav{gap:1.2rem;flex-shrink:0}
+  .header-nav a{font-size:1.1rem;white-space:nowrap}
+  .header-nav a.pc-only{display:none}
+}
+/* さらに狭い端末ではロゴ文字を落としてナビを優先 */
+@media(max-width:400px){
+  .header-logo img{height:2rem}
+  .header-logo-divider,
+  .header-logo-vfam{display:none}
+  .header-nav{gap:1rem}
+  .header-nav a{font-size:1.05rem}
+}
+
+/* ============================================================
+   ページタイトル
+============================================================ */
+.talents-top{
+  padding-top:9rem;
+  padding-bottom:10rem;
+  background:
+    radial-gradient(60rem 40rem at 85% -5%,rgba(75,184,224,.18),transparent 70%),
+    radial-gradient(50rem 36rem at 5% 12%,rgba(228,107,168,.14),transparent 70%),
+    #fdfdfd;
+}
+.talents-top-inner{
+  max-width:120rem;
+  margin:0 auto;
+  padding:0 2.4rem;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+.page-title-wrapper{
+  margin-top:5rem;
+  text-align:center;
+}
+.page-title-en{
+  font-family:'Montserrat',sans-serif;
+  font-weight:700;
+  font-size:1.2rem;
+  letter-spacing:.24em;
+  color:#1a88a8;
+  margin-bottom:1.2rem;
+}
+.page-title{
+  font-family:'Montserrat','Noto Sans JP',sans-serif;
+  font-weight:700;
+  font-size:4.2rem;
+  line-height:5.1rem;
+  letter-spacing:.04em;
+  color:#2d2d2d;
+}
+.page-title-lead{
+  margin-top:1.6rem;
+  font-size:1.4rem;
+  line-height:2.4rem;
+  color:#6b6b7b;
+}
+@media(max-width:767px){
+  .talents-top{padding-top:6.4rem;padding-bottom:6rem}
+  .page-title-wrapper{margin-top:3rem;text-align:left;width:100%}
+  .page-title{font-size:2.4rem;line-height:2.9rem;text-align:left}
+  .page-title-lead{font-size:1.3rem;line-height:2.2rem}
+}
+
+/* ── 準備中バナー ── */
+.coming-notice{
+  margin-top:2.4rem;
+  padding:1rem 2rem;
+  background:#fff;
+  border:.2rem solid #1a1a1a;
+  border-radius:999px;
+  box-shadow:.3rem .3rem 0 #1a1a1a;
+  font-size:1.3rem;
+  font-weight:700;
+  display:flex;
+  align-items:center;
+  gap:.8rem;
+}
+.coming-notice i{color:#e46ba8}
+@media(max-width:767px){
+  .coming-notice{font-size:1.15rem;padding:.9rem 1.4rem;align-self:flex-start}
+}
+
+/* ============================================================
+   絞り込みタブ（affiliation-filtering-button 相当）
+   内側の白い ::before がスライドして選択状態を示す
+============================================================ */
+.filtering-tab-wrapper{
+  margin-top:4rem;
+  display:flex;
+  justify-content:center;
+  width:100%;
+}
+.affiliation-filter{
+  width:34.9rem;
+  height:5.4rem;
+  border-radius:3.1rem;
+}
+.affiliation-filter-inner{
+  position:relative;
+  display:flex;
+  width:100%;
+  height:100%;
+  background:rgba(45,45,45,.03);
+  border-radius:3.1rem;
+  box-shadow:inset 0 .2rem .8rem rgba(45,45,45,.07);
+}
+/* スライドする白いつまみ。--tab-count / --tab-index をJSが更新する */
+.affiliation-filter-inner::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  width:calc(100% / var(--tab-count,2));
+  height:100%;
+  background:#fff;
+  border-radius:3.1rem;
+  box-shadow:0 1rem 2.4rem rgba(45,45,45,.1);
+  transform:translateX(calc(100% * var(--tab-index,0)));
+  transition:transform .3s ease-in-out;
+}
+.filter-button-wrapper{
+  z-index:1;
+  flex:1 1 0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:100%;
+}
+.filter-button-wrapper input{display:none}
+.filter-button-wrapper label{
+  display:block;
+  width:100%;
+  height:100%;
+  font-weight:700;
+  font-size:1.6rem;
+  line-height:5.4rem;
+  color:#2d2d2d;
+  text-align:center;
+  letter-spacing:.02em;
+  cursor:pointer;
+  transition:color .2s;
+}
+.filter-button-wrapper input:not(:checked)+label{color:rgba(45,45,45,.5)}
+@media(max-width:767px){
+  .filtering-tab-wrapper{margin-top:2.4rem}
+  .affiliation-filter{width:100%;max-width:34.9rem;height:4.2rem}
+  .filter-button-wrapper label{font-size:1.4rem;line-height:4.2rem}
+}
+
+/* ============================================================
+   並び替え（sort-filter-button 相当）
+============================================================ */
+.sort-wrapper{
+  width:100%;
+  max-width:96rem;
+  margin-top:3.2rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1.6rem;
+}
+.talent-count{
+  font-size:1.3rem;
+  color:#6b6b7b;
+  letter-spacing:.04em;
+}
+.talent-count strong{
+  font-family:'Montserrat',sans-serif;
+  font-size:1.8rem;
+  font-weight:700;
+  color:#2d2d2d;
+  margin:0 .3rem;
+}
+.sort-button{
+  display:flex;
+  align-items:center;
+  gap:.8rem;
+  height:4.2rem;
+  padding:0 2rem;
+  font-size:1.4rem;
+  font-weight:700;
+  color:#2d2d2d;
+  background:#fff;
+  border-radius:2.1rem;
+  box-shadow:0 .2rem 1.2rem rgba(45,45,45,.12);
+  transition:box-shadow .2s,transform .2s;
+}
+.sort-button:hover{
+  transform:translateY(-.1rem);
+  box-shadow:0 .4rem 1.6rem rgba(45,45,45,.18);
+}
+.sort-button i{font-size:1.2rem;color:#1a88a8}
+@media(max-width:767px){
+  .sort-wrapper{margin-top:2.4rem}
+  .sort-button{height:3.6rem;padding:0 1.4rem;font-size:1.2rem}
+}
+
+/* ============================================================
+   タレントカードグリッド
+   にじさんじ実測値：
+     PC   grid-template-columns:repeat(auto-fill,minmax(23.2rem,1fr)); gap 8.3rem 0
+     TB   repeat(3,1fr) / gap 8rem 0
+     SP   repeat(2,1fr) / gap 3.4rem 12vw
+============================================================ */
+.talent-list{
+  display:grid;
+  /* 固定幅トラック＋auto-fit：タレントが少ないうちは中央寄せ、
+     増えたら1行4枚まで自動で並ぶ（にじさんじの23.2rem幅を踏襲） */
+  grid-template-columns:repeat(auto-fit,23.2rem);
+  grid-gap:8.3rem 0;
+  justify-content:center;
+  justify-items:center;
+  width:100%;
+  max-width:96rem;
+  margin:5rem auto 0;
+  opacity:1;
+  transition:opacity .2s ease-out;
+}
+.talent-list.loading{opacity:0}
+
+.talent-item{
+  position:relative;
+  width:19.7rem;
+}
+
+/* ── 丸アイコン（liver-icon 相当。hoverで内側の画像が1.1倍） ── */
+.talent-icon-wrapper{
+  position:relative;
+  display:block;          /* aタグはinlineなので %指定を効かせるためblock化 */
+  width:100%;
+  height:0;
+  padding-bottom:100%;
+  margin-inline:auto;
+  margin-bottom:1.4rem;
+  cursor:pointer;
+  border-radius:50%;
+}
+.talent-icon{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  background:#fff;
+  border-radius:50%;
+  box-shadow:0 .4rem 6.4rem hsla(26,36%,73%,.56);
+  transition:all .2s cubic-bezier(.45,0,.55,1);
+}
+.talent-icon>img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  transition:all .2s cubic-bezier(.45,0,.55,1);
+}
+.talent-icon-wrapper:hover .talent-icon{
+  box-shadow:0 .4rem 10.2rem hsla(26,36%,73%,.8);
+}
+.talent-icon-wrapper:hover .talent-icon>img{transform:scale(1.1)}
+
+/* イメージカラーのリング */
+.talent-icon-ring{
+  position:absolute;
+  inset:-.6rem;
+  border-radius:50%;
+  border:.2rem solid var(--theme,#4bb8e0);
+  opacity:.35;
+  pointer-events:none;
+  transition:opacity .2s,inset .2s;
+}
+.talent-icon-wrapper:hover .talent-icon-ring{opacity:.9;inset:-1rem}
+
+/* ── 名前 ── */
+.talent-name{
+  padding-top:1rem;
+  margin:0 -1.5rem;
+  font-weight:700;
+  font-size:1.8rem;
+  line-height:2.2rem;
+  text-align:center;
+  letter-spacing:.05em;
+  word-break:keep-all;
+  overflow-wrap:break-word;
+  cursor:pointer;
+}
+.talent-ruby{
+  margin-top:.6rem;
+  font-size:1.2rem;
+  line-height:1.6rem;
+  text-align:center;
+  color:#8a8a99;
+  letter-spacing:.04em;
+}
+.talent-en-name{
+  margin-top:.4rem;
+  font-family:'Montserrat',sans-serif;
+  font-weight:700;
+  font-size:1.1rem;
+  line-height:1.4rem;
+  text-align:center;
+  color:#b0b0bd;
+  letter-spacing:.1em;
+}
+.talent-debut{
+  margin-top:1rem;
+  font-size:1.1rem;
+  text-align:center;
+  color:#fff;
+  background:var(--theme,#4bb8e0);
+  border-radius:999px;
+  padding:.3rem 1rem;
+  width:fit-content;
+  margin-inline:auto;
+  letter-spacing:.04em;
+  font-weight:700;
+}
+
+/* ── SNSリンク（talent-social-links 相当：カード右上に縦並び） ── */
+.talent-social-links{
+  position:absolute;
+  top:0;
+  right:-1.2rem;
+  display:flex;
+  flex-direction:column;
+  row-gap:.2rem;
+  place-items:center;
+  width:fit-content;
+  padding:.2rem;
+  background:hsla(0,0%,100%,.8);
+  border-radius:.8rem;
+  box-shadow:0 0 .4rem 0 rgba(45,45,45,.2);
+}
+.talent-social-links .icon-wrapper{
+  display:grid;
+  place-items:center;
+  width:4rem;
+  height:4rem;
+  font-size:1.6rem;
+  color:#2d2d2d;
+  border-radius:.6rem;
+  transition:background .2s,color .2s;
+}
+.talent-social-links .icon-wrapper:hover{background:rgba(45,45,45,.06)}
+.talent-social-links .icon-wrapper.youtube:hover{color:#ff0000}
+.talent-social-links .icon-wrapper.x:hover{color:#000}
+.talent-social-links .icon-wrapper.tiktok:hover{color:#000}
+.talent-social-links .icon-wrapper.instagram:hover{color:#dc2743}
+/* 未定（リンクなし）は薄く表示してクリック不可 */
+.talent-social-links .icon-wrapper.disabled{
+  color:#c8c8d2;
+  cursor:not-allowed;
+}
+.talent-social-links .icon-wrapper.disabled:hover{background:none}
+
+@media(max-width:1024px){
+  .talent-list{grid-template-columns:repeat(3,1fr);grid-gap:8rem 0;width:90vw;margin-top:4.2rem}
+  .talent-item{width:100%}
+}
+@media(max-width:767px){
+  .talent-list{grid-template-columns:repeat(2,1fr);grid-gap:3.4rem 12vw;width:80vw;margin-top:3rem}
+  .talent-item{width:100%}
+  .talent-name{font-size:1.3rem;line-height:1.6rem;letter-spacing:0}
+  .talent-ruby{font-size:1rem}
+  .talent-en-name{font-size:.95rem}
+  .talent-debut{font-size:.95rem}
+  .talent-social-links{right:-.8rem}
+  .talent-social-links .icon-wrapper{width:3.2rem;height:3.2rem;font-size:1.3rem}
+}
+
+/* ── 空状態 ── */
+.talent-empty{
+  grid-column:1/-1;
+  padding:6rem 0;
+  text-align:center;
+  font-size:1.4rem;
+  color:#8a8a99;
+}
+
+/* ============================================================
+   募集（オーディション）誘導
+============================================================ */
+.vfam-cta{
+  background:#e8f5ff;
+  padding:5.6rem 2.4rem;
+}
+.vfam-cta-inner{
+  max-width:72rem;
+  margin:0 auto;
+  text-align:center;
+}
+.vfam-cta-heading{
+  font-family:'Montserrat','Noto Sans JP',sans-serif;
+  font-weight:900;
+  font-size:2.2rem;
+  line-height:1.5;
+  margin-bottom:1.2rem;
+}
+.vfam-cta-text{
+  font-size:1.4rem;
+  line-height:2.4rem;
+  color:#41556b;
+  margin-bottom:2.8rem;
+}
+.vfam-cta-btns{
+  display:flex;
+  flex-direction:column;
+  gap:1.4rem;
+  max-width:36rem;
+  margin:0 auto;
+}
+.btn-cta-line,
+.btn-cta-form{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:1rem;
+  padding:1.6rem 2.8rem;
+  font-size:1.6rem;
+  font-weight:900;
+  border:.2rem solid #1a1a1a;
+  border-radius:999px;
+  box-shadow:.4rem .4rem 0 #1a1a1a;
+  transition:transform .12s,box-shadow .12s;
+}
+.btn-cta-line{background:#06C755;color:#fff}
+.btn-cta-form{background:#fff;color:#1a1a1a}
+.btn-cta-line:hover,
+.btn-cta-form:hover{
+  transform:translate(.2rem,.2rem);
+  box-shadow:.2rem .2rem 0 #1a1a1a;
+}
+@media(max-width:767px){
+  .vfam-cta{padding:4rem 2rem}
+  .vfam-cta-heading{font-size:1.8rem}
+  .vfam-cta-btns{max-width:100%}
+}
+
+/* ============================================================
+   フッター
+============================================================ */
+.site-footer{
+  background:#1a0535;
+  color:rgba(255,255,255,.75);
+  padding:0;
+}
+.site-footer-inner{
+  max-width:120rem;
+  margin:0 auto;
+  padding:3.2rem 2.4rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1.6rem;
+  flex-wrap:wrap;
+}
+.footer-logo img{
+  height:3.2rem;
+  width:auto;
+  object-fit:contain;
+  filter:brightness(0) invert(1);
+}
+.footer-links{
+  display:flex;
+  gap:2rem;
+  flex-wrap:wrap;
+}
+.footer-links a{
+  font-size:1.2rem;
+  color:rgba(255,255,255,.55);
+  transition:color .2s;
+}
+.footer-links a:hover{color:rgba(255,255,255,.9)}
+.footer-copy{
+  width:100%;
+  font-size:1.1rem;
+  color:rgba(255,255,255,.35);
+  letter-spacing:.06em;
+}
+@media(max-width:767px){
+  .site-footer-inner{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:1.6rem;
+    padding:2.4rem 2rem;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ ヘッダー ============ -->
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="header-logo" href="../index.html">
+      <img src="../ロゴ画像素材/logo_famdpro.png" alt="FAMDSプロダクション">
+      <span class="header-logo-divider"></span>
+      <span class="header-logo-vfam">Vfam</span>
+    </a>
+    <nav class="header-nav">
+      <a href="../index.html">TOP</a>
+      <a href="talents.html" class="current">タレント</a>
+      <a href="../index.html#projects" class="pc-only">事業内容</a>
+      <a href="../famdsHP_audition/audition.html">オーディション</a>
+    </nav>
+  </div>
+  <div class="rainbow-line"></div>
+</header>
+
+<!-- ============ タレント一覧 ============ -->
+<main class="talents-top">
+  <div class="talents-top-inner">
+
+    <div class="page-title-wrapper">
+      <p class="page-title-en">VFAM TALENTS</p>
+      <h1 class="page-title">タレント一覧</h1>
+      <p class="page-title-lead">
+        FAMDSプロダクション VTuber部門「Vfam（ぶいふぁむ）」所属タレントのご紹介
+      </p>
+    </div>
+
+    <div class="coming-notice">
+      <i class="fa-solid fa-circle-info"></i>
+      <span>掲載内容はすべて仮データです。デビュータレント情報は順次公開予定。</span>
+    </div>
+
+    <!-- 絞り込みタブ -->
+    <div class="filtering-tab-wrapper">
+      <div class="affiliation-filter">
+        <div class="affiliation-filter-inner" id="filterInner">
+          <!-- JSがタブを生成 -->
+        </div>
+      </div>
+    </div>
+
+    <!-- 件数 + 並び替え -->
+    <div class="sort-wrapper">
+      <p class="talent-count">全<strong id="talentCount">0</strong>名</p>
+      <button class="sort-button" id="sortButton" type="button">
+        <i class="fa-solid fa-arrow-down-a-z"></i>
+        <span id="sortLabel">名前順</span>
+      </button>
+    </div>
+
+    <!-- カードグリッド -->
+    <div class="talent-list" id="talentList"></div>
+
+  </div>
+</main>
+
+<!-- ============ 応募誘導 ============ -->
+<section class="vfam-cta">
+  <div class="vfam-cta-inner">
+    <h2 class="vfam-cta-heading">Vfam 1期生 メンバー募集</h2>
+    <p class="vfam-cta-text">
+      VTuber部門「Vfam」では、一緒に立ち上げから駆け抜けてくれるメンバーを募集予定です。<br>
+      未経験の方も歓迎。まずはお気軽にお問い合わせください。
+    </p>
+    <div class="vfam-cta-btns">
+      <a href="https://lin.ee/ShCMpuC" class="btn-cta-line">
+        <i class="fa-brands fa-line"></i>LINEで問い合わせ
+      </a>
+      <a href="https://forms.gle/vQFVZkmxWorQ9Pf66" class="btn-cta-form">
+        <i class="fa-solid fa-clipboard-list"></i>フォームで問い合わせ
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ フッター ============ -->
+<footer class="site-footer">
+  <div class="rainbow-line"></div>
+  <div class="site-footer-inner">
+    <a class="footer-logo" href="../index.html">
+      <img src="../ロゴ画像素材/logo_famdpro.png" alt="FAMDSプロダクション">
+    </a>
+    <nav class="footer-links">
+      <a href="../index.html">TOP</a>
+      <a href="../index.html#projects">事業内容</a>
+      <a href="../index.html#philosophy">プロダクション理念</a>
+      <a href="../index.html#company">事業概要</a>
+      <a href="../famdsHP_audition/audition.html">オーディション</a>
+    </nav>
+    <p class="footer-copy">&copy; 2025 FAMDSプロダクション All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script src="talents.js"></script>
+<script>
+(function(){
+  var listEl   = document.getElementById('talentList');
+  var countEl  = document.getElementById('talentCount');
+  var filterEl = document.getElementById('filterInner');
+  var sortBtn  = document.getElementById('sortButton');
+  var sortLbl  = document.getElementById('sortLabel');
+
+  var currentFilter = 'all';
+  var sortModes = [
+    { key:'name',      label:'名前順',      icon:'fa-arrow-down-a-z' },
+    { key:'debut',     label:'デビュー順',  icon:'fa-calendar-days' },
+    { key:'nameDesc',  label:'名前順（逆）',icon:'fa-arrow-up-a-z' }
+  ];
+  var sortIndex = 0;
+
+  var SNS_META = [
+    { key:'youtube',   icon:'fa-brands fa-youtube',   label:'YouTube' },
+    { key:'x',         icon:'fa-brands fa-x-twitter', label:'X' },
+    { key:'tiktok',    icon:'fa-brands fa-tiktok',    label:'TikTok' },
+    { key:'instagram', icon:'fa-brands fa-instagram', label:'Instagram' }
+  ];
+
+  /* ---- 絞り込みタブを生成 ---- */
+  function buildFilters(){
+    filterEl.style.setProperty('--tab-count', VFAM_FILTERS.length);
+    VFAM_FILTERS.forEach(function(f, i){
+      var wrap = document.createElement('div');
+      wrap.className = 'filter-button-wrapper';
+
+      var input = document.createElement('input');
+      input.type = 'radio';
+      input.name = 'affiliation';
+      input.id   = 'filter-' + i;
+      input.checked = (i === 0);
+
+      var label = document.createElement('label');
+      label.setAttribute('for', input.id);
+      label.textContent = f.label;
+
+      input.addEventListener('change', function(){
+        currentFilter = f.key;
+        filterEl.style.setProperty('--tab-index', i);
+        render();
+      });
+
+      wrap.appendChild(input);
+      wrap.appendChild(label);
+      filterEl.appendChild(wrap);
+    });
+    filterEl.style.setProperty('--tab-index', 0);
+  }
+
+  /* ---- SNSリンク群 ---- */
+  function buildSocialLinks(t){
+    var box = document.createElement('div');
+    box.className = 'talent-social-links';
+    SNS_META.forEach(function(s){
+      var url = t.sns ? t.sns[s.key] : null;
+      var el = url ? document.createElement('a') : document.createElement('span');
+      el.className = 'icon-wrapper ' + s.key + (url ? '' : ' disabled');
+      el.title = url ? s.label : s.label + '（準備中）';
+      if(url){
+        el.href = url;
+        el.target = '_blank';
+        el.rel = 'noopener';
+      }
+      var i = document.createElement('i');
+      i.className = s.icon;
+      el.appendChild(i);
+      box.appendChild(el);
+    });
+    return box;
+  }
+
+  /* ---- カード1枚 ---- */
+  function buildCard(t){
+    var item = document.createElement('div');
+    item.className = 'talent-item';
+    item.style.setProperty('--theme', t.themeColor || '#4bb8e0');
+
+    var href = 'talent.html?id=' + encodeURIComponent(t.id);
+
+    // 丸アイコン
+    var iconLink = document.createElement('a');
+    iconLink.className = 'talent-icon-wrapper';
+    iconLink.href = href;
+    iconLink.setAttribute('aria-label', t.name);
+
+    var icon = document.createElement('div');
+    icon.className = 'talent-icon';
+    var img = document.createElement('img');
+    img.src = t.iconImage;
+    img.alt = t.name;
+    img.loading = 'lazy';
+    icon.appendChild(img);
+
+    var ring = document.createElement('span');
+    ring.className = 'talent-icon-ring';
+
+    iconLink.appendChild(icon);
+    iconLink.appendChild(ring);
+
+    // テキスト
+    var nameLink = document.createElement('a');
+    nameLink.href = href;
+
+    var name = document.createElement('p');
+    name.className = 'talent-name';
+    name.textContent = t.name;
+    nameLink.appendChild(name);
+
+    if(t.ruby){
+      var ruby = document.createElement('p');
+      ruby.className = 'talent-ruby';
+      ruby.textContent = t.ruby;
+      nameLink.appendChild(ruby);
+    }
+    if(t.enName){
+      var en = document.createElement('p');
+      en.className = 'talent-en-name';
+      en.textContent = t.enName;
+      nameLink.appendChild(en);
+    }
+    if(t.debut){
+      var debut = document.createElement('p');
+      debut.className = 'talent-debut';
+      debut.textContent = t.debut;
+      nameLink.appendChild(debut);
+    }
+
+    item.appendChild(iconLink);
+    item.appendChild(nameLink);
+    item.appendChild(buildSocialLinks(t));
+    return item;
+  }
+
+  /* ---- 描画 ---- */
+  function render(){
+    var items = VFAM_TALENTS.filter(function(t){
+      return currentFilter === 'all' || t.unit === currentFilter;
+    });
+
+    var mode = sortModes[sortIndex].key;
+    items.sort(function(a,b){
+      if(mode === 'debut') return String(a.debut).localeCompare(String(b.debut),'ja');
+      var r = String(a.ruby || a.name).localeCompare(String(b.ruby || b.name),'ja');
+      return mode === 'nameDesc' ? -r : r;
+    });
+
+    listEl.classList.add('loading');
+    // フェードのために1フレーム待ってから差し替え
+    setTimeout(function(){
+      listEl.innerHTML = '';
+      if(items.length === 0){
+        var empty = document.createElement('p');
+        empty.className = 'talent-empty';
+        empty.textContent = '該当するタレントがいません。';
+        listEl.appendChild(empty);
+      } else {
+        items.forEach(function(t){ listEl.appendChild(buildCard(t)); });
+      }
+      countEl.textContent = items.length;
+      listEl.classList.remove('loading');
+    }, 200);
+  }
+
+  sortBtn.addEventListener('click', function(){
+    sortIndex = (sortIndex + 1) % sortModes.length;
+    var m = sortModes[sortIndex];
+    sortLbl.textContent = m.label;
+    sortBtn.querySelector('i').className = 'fa-solid ' + m.icon;
+    render();
+  });
+
+  buildFilters();
+  render();
+})();
+</script>
+</body>
+</html>

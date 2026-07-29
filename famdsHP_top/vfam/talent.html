@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>タレント紹介 | Vfam（ぶいふぁむ）｜FAMDSプロダクション VTuber部門</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+/* ============================================================
+   Vfam タレント詳細
+   にじさんじの liver-profile 構成を踏襲：
+     上段（upperParts）… 左にテキスト／右に立ち絵、背景はイメージカラー
+     中段（middleParts）… 白背景の補足プロフィール
+     下段（lowerParts） … SNSアカウント一覧
+============================================================ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{font-size:62.5%}
+body{
+  font-family:'Noto Sans JP',sans-serif;
+  font-size:1.6rem;
+  color:#2d2d2d;
+  background:#fdfdfd;
+  overflow-x:hidden;
+}
+a{text-decoration:none;color:inherit}
+img,svg{max-width:100%;display:block}
+button{font-family:inherit;background:none;border:none;cursor:pointer}
+
+.rainbow-line{
+  height:.4rem;
+  background:linear-gradient(90deg,#00e8a2,#00a3ff 24%,#b61cff 58%,#ea193e 87%,#fdc500);
+}
+
+/* ============ ヘッダー（一覧ページと共通） ============ */
+.site-header{
+  position:fixed;
+  top:0;left:0;right:0;
+  z-index:100;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  box-shadow:0 .1rem 1.2rem rgba(45,45,45,.08);
+}
+.site-header-inner{
+  max-width:120rem;
+  margin:0 auto;
+  padding:1rem 2.4rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:2rem;
+}
+.header-logo{display:flex;align-items:center;gap:1.2rem}
+.header-logo img{height:3.2rem;width:auto;object-fit:contain}
+.header-logo-divider{width:.1rem;height:2.4rem;background:rgba(45,45,45,.15)}
+.header-logo-vfam{
+  font-family:'Montserrat','Noto Sans JP',sans-serif;
+  font-weight:900;
+  font-size:1.8rem;
+  letter-spacing:.06em;
+  color:#1a88a8;
+}
+.header-nav{display:flex;align-items:center;gap:2.4rem}
+.header-nav a{font-size:1.4rem;font-weight:700;transition:opacity .2s}
+.header-nav a:hover{opacity:.6}
+.header-nav a.current{color:#1a88a8}
+@media(max-width:767px){
+  .site-header-inner{padding:.8rem 1.6rem;gap:1rem}
+  .header-logo{gap:.8rem;min-width:0}
+  .header-logo img{height:2.2rem}
+  .header-logo-divider{height:1.8rem}
+  .header-logo-vfam{font-size:1.4rem}
+  .header-nav{gap:1.2rem;flex-shrink:0}
+  .header-nav a{font-size:1.1rem;white-space:nowrap}
+  .header-nav a.pc-only{display:none}
+}
+/* さらに狭い端末ではロゴ文字を落としてナビを優先 */
+@media(max-width:400px){
+  .header-logo img{height:2rem}
+  .header-logo-divider,
+  .header-logo-vfam{display:none}
+  .header-nav{gap:1rem}
+  .header-nav a{font-size:1.05rem}
+}
+
+/* ============================================================
+   上段：立ち絵 + 名前
+============================================================ */
+.talent-detail{padding-bottom:10rem}
+
+.upper-parts{
+  position:relative;
+  padding-top:6.4rem;
+  /* イメージカラーを --theme としてJSが設定 */
+  background:
+    radial-gradient(80rem 60rem at 78% 20%,color-mix(in srgb,var(--theme,#4bb8e0) 42%,transparent),transparent 70%),
+    linear-gradient(160deg,color-mix(in srgb,var(--theme,#4bb8e0) 22%,#fff),#fff 62%);
+  overflow:hidden;
+}
+/* color-mix 未対応ブラウザ向けフォールバック */
+@supports not (background:color-mix(in srgb,#000 10%,#fff)){
+  .upper-parts{background:linear-gradient(160deg,rgba(75,184,224,.22),#fff 62%)}
+}
+
+.contents-wrap{
+  position:relative;
+  display:flex;
+  width:min(80vw,96rem);
+  min-height:74rem;
+  margin-inline:auto;
+}
+
+/* 一覧へ戻るリンク */
+.talent-list-link{
+  position:absolute;
+  top:4rem;
+  left:0;
+  z-index:2;
+  display:inline-flex;
+  align-items:center;
+  gap:.8rem;
+  width:fit-content;
+  height:fit-content;
+  padding:.5rem 1.5rem;
+  font-size:1.6rem;
+  line-height:2.2rem;
+  color:#fff;
+  background:rgba(45,45,45,.55);
+  border-radius:3rem;
+  transition:all .2s cubic-bezier(.45,0,.55,1);
+}
+.talent-list-link:hover{opacity:.8}
+.talent-list-link i{font-size:1.2rem}
+
+/* ── 左：テキスト ── */
+.text-contents{
+  position:relative;
+  z-index:1;
+  width:50%;
+  margin:10.55rem 5% 0 0;
+}
+.talent-unit{
+  display:inline-block;
+  padding:.4rem 1.4rem;
+  font-size:1.2rem;
+  font-weight:700;
+  letter-spacing:.1em;
+  color:#fff;
+  background:var(--theme,#4bb8e0);
+  border-radius:999px;
+  margin-bottom:1.6rem;
+}
+.talent-name{
+  margin-right:-2rem;
+  font-family:'Montserrat','Noto Sans JP',sans-serif;
+  font-weight:900;
+  font-size:4.5rem;
+  line-height:6.5rem;
+  text-align:left;
+  letter-spacing:.05em;
+  word-break:keep-all;
+  overflow-wrap:break-word;
+}
+.talent-ruby,
+.talent-en-name{
+  font-size:1.6rem;
+  letter-spacing:.05em;
+  opacity:.67;
+}
+.talent-ruby{margin-top:.05rem;line-height:3.5rem}
+.talent-en-name{
+  line-height:2rem;
+  font-family:'Montserrat',sans-serif;
+  font-weight:700;
+}
+.talent-catch{
+  margin-top:2.4rem;
+  font-size:2rem;
+  font-weight:700;
+  line-height:1.6;
+  color:var(--theme,#4bb8e0);
+}
+.talent-description{
+  margin-top:2.4rem;
+  font-size:1.8rem;
+  line-height:3.1rem;
+  white-space:pre-line;
+}
+.talent-tags{
+  margin-top:3rem;
+  display:flex;
+  flex-wrap:wrap;
+  gap:.8rem;
+}
+.talent-tag{
+  padding:.6rem 1.4rem;
+  font-size:1.3rem;
+  font-weight:700;
+  background:hsla(0,0%,100%,.75);
+  border:.1rem solid rgba(45,45,45,.12);
+  border-radius:999px;
+  box-shadow:0 .2rem .8rem rgba(45,45,45,.06);
+}
+
+/* ── 右：立ち絵 ── */
+.talent-photo{
+  position:relative;
+  display:flex;
+  justify-content:center;
+  width:40%;
+  margin-left:10%;
+  overflow:visible clip;
+}
+.image-contents{
+  position:absolute;
+  bottom:0;
+  height:min(85%,80rem);
+  text-align:center;
+  pointer-events:none;
+  opacity:1;
+  transition:opacity .3s ease,transform .5s ease;
+  transform:translateX(0);
+}
+.image-contents>img,
+.image-contents>svg{
+  height:100%;
+  width:auto;
+  object-fit:contain;
+  object-position:center bottom;
+  filter:drop-shadow(0 1rem 3rem rgba(45,45,45,.18));
+}
+.image-contents.loading{opacity:0;transform:translateX(10rem)}
+
+@media(max-width:1024px){
+  .contents-wrap{width:90vw;min-height:60rem}
+  .talent-name{font-size:3.6rem;line-height:5rem}
+  .talent-description{font-size:1.6rem;line-height:2.8rem}
+}
+@media(max-width:767px){
+  .contents-wrap{display:block;width:90vw;min-height:auto}
+  .talent-list-link{top:1.5rem;padding:.9rem 1.2rem;font-size:1.3rem}
+  .text-contents{
+    z-index:0;
+    width:100%;
+    padding-top:6.7rem;
+    margin:0;
+    text-align:center;
+  }
+  .talent-unit{margin-bottom:1.2rem}
+  .talent-name{
+    margin-right:0;
+    font-size:2.8rem;
+    line-height:3.6rem;
+    text-align:center;
+  }
+  .talent-ruby,
+  .talent-en-name{
+    font-size:1.4rem;
+    text-align:center;
+    letter-spacing:normal;
+    opacity:1;
+  }
+  .talent-ruby{margin-top:.5rem;line-height:normal}
+  .talent-catch{font-size:1.6rem;margin-top:1.6rem}
+  .talent-description{
+    margin-top:2rem;
+    font-size:1.5rem;
+    line-height:2.6rem;
+    text-align:left;
+  }
+  .talent-tags{justify-content:center}
+  /* 立ち絵はテキストの下に回す。position:relative にしないと
+     absolute の立ち絵が外側を基準にしてテキストへ重なる */
+  .talent-photo{
+    position:relative;
+    width:100%;
+    height:min(100vw,60rem);
+    margin:2rem 0 0;
+  }
+  .image-contents{height:100%;margin-inline:auto;left:0;right:0}
+}
+
+/* ============================================================
+   中段：プロフィール表
+============================================================ */
+.middle-parts{
+  width:100%;
+  padding:4rem 10% 3.5rem;
+  background:#fff;
+}
+.middle-inner{
+  max-width:96rem;
+  margin:0 auto;
+}
+.section-title{
+  display:flex;
+  align-items:center;
+  gap:1rem;
+  font-family:'Montserrat','Noto Sans JP',sans-serif;
+  font-weight:900;
+  font-size:2rem;
+  margin-bottom:2.4rem;
+  padding-bottom:1.2rem;
+  border-bottom:.2rem solid #2d2d2d;
+}
+.section-title::before{
+  content:'◆';
+  font-size:.8em;
+  color:var(--theme,#4bb8e0);
+}
+.profile-table{
+  width:100%;
+  border-collapse:collapse;
+}
+.profile-table tr{border-bottom:.1rem solid #ececf2}
+.profile-table tr:first-child{border-top:.1rem solid #ececf2}
+.profile-table th{
+  width:14rem;
+  padding:1.4rem 1.6rem 1.4rem 0;
+  font-size:1.3rem;
+  font-weight:700;
+  color:var(--theme,#4bb8e0);
+  text-align:left;
+  vertical-align:top;
+  white-space:nowrap;
+}
+.profile-table td{
+  padding:1.4rem 0;
+  font-size:1.4rem;
+  line-height:1.8;
+  color:#3a3a4a;
+}
+@media(max-width:767px){
+  .middle-parts{padding:3.2rem 5% 2.4rem}
+  .profile-table th{width:9rem;font-size:1.2rem;padding-right:1rem}
+  .profile-table td{font-size:1.3rem}
+}
+
+/* ============================================================
+   下段：SNSアカウント
+============================================================ */
+.lower-parts{
+  width:100%;
+  padding:4rem 10% 5rem;
+  background:#f7fafc;
+}
+.lower-inner{
+  max-width:96rem;
+  margin:0 auto;
+}
+.account-list{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(22rem,1fr));
+  gap:1.6rem;
+}
+.account-item{
+  display:flex;
+  align-items:center;
+  gap:1.2rem;
+  padding:1.6rem 2rem;
+  background:#fff;
+  border:.2rem solid #1a1a1a;
+  border-radius:1.2rem;
+  box-shadow:.4rem .4rem 0 #1a1a1a;
+  font-size:1.4rem;
+  font-weight:700;
+  transition:transform .12s,box-shadow .12s;
+}
+.account-item:hover{
+  transform:translate(.2rem,.2rem);
+  box-shadow:.2rem .2rem 0 #1a1a1a;
+}
+.account-item i{font-size:2rem;width:2.4rem;text-align:center}
+.account-item.youtube i{color:#ff0000}
+.account-item.x i{color:#000}
+.account-item.tiktok i{color:#000}
+.account-item.instagram i{
+  background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+/* 未定のアカウントは押せない見た目に */
+.account-item.disabled{
+  color:#a0a0ae;
+  border-color:#d5d5de;
+  box-shadow:.4rem .4rem 0 #e6e6ee;
+  cursor:not-allowed;
+}
+.account-item.disabled i{color:#c8c8d2;-webkit-text-fill-color:#c8c8d2}
+.account-item.disabled:hover{transform:none;box-shadow:.4rem .4rem 0 #e6e6ee}
+.account-note{
+  margin-left:auto;
+  font-size:1.1rem;
+  font-weight:400;
+  color:#a0a0ae;
+}
+
+/* ── 他のタレント ── */
+.other-talents{
+  margin-top:5rem;
+}
+.other-talent-list{
+  display:flex;
+  flex-wrap:wrap;
+  gap:2.4rem;
+}
+.other-talent{
+  display:flex;
+  align-items:center;
+  gap:1.2rem;
+  padding:1rem 2rem 1rem 1rem;
+  background:#fff;
+  border-radius:999px;
+  box-shadow:0 .2rem 1.2rem rgba(45,45,45,.1);
+  transition:transform .2s,box-shadow .2s;
+}
+.other-talent:hover{
+  transform:translateY(-.2rem);
+  box-shadow:0 .4rem 1.8rem rgba(45,45,45,.16);
+}
+.other-talent-icon{
+  width:5.6rem;
+  height:5.6rem;
+  border-radius:50%;
+  overflow:hidden;
+  background:#fff;
+  box-shadow:0 .2rem 1.2rem hsla(26,36%,73%,.5);
+  flex-shrink:0;
+}
+.other-talent-icon img{width:100%;height:100%;object-fit:contain}
+.other-talent-name{font-size:1.4rem;font-weight:700}
+.other-talent-ruby{font-size:1.1rem;color:#8a8a99;margin-top:.2rem}
+@media(max-width:767px){
+  .lower-parts{padding:3.2rem 5% 4rem}
+  .account-list{grid-template-columns:1fr}
+  .other-talent-list{gap:1.2rem}
+}
+
+/* ── 見つからない場合 ── */
+.not-found{
+  padding:16rem 2.4rem 10rem;
+  text-align:center;
+}
+.not-found h1{
+  font-family:'Montserrat','Noto Sans JP',sans-serif;
+  font-size:2.4rem;
+  margin-bottom:1.6rem;
+}
+.not-found p{font-size:1.4rem;color:#6b6b7b;margin-bottom:3.2rem}
+.not-found a{
+  display:inline-flex;
+  align-items:center;
+  gap:.8rem;
+  padding:1.4rem 2.8rem;
+  font-size:1.5rem;
+  font-weight:900;
+  background:#fff;
+  border:.2rem solid #1a1a1a;
+  border-radius:999px;
+  box-shadow:.4rem .4rem 0 #1a1a1a;
+}
+
+/* ============ フッター ============ */
+.site-footer{background:#1a0535;color:rgba(255,255,255,.75)}
+.site-footer-inner{
+  max-width:120rem;
+  margin:0 auto;
+  padding:3.2rem 2.4rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1.6rem;
+  flex-wrap:wrap;
+}
+.footer-logo img{height:3.2rem;width:auto;object-fit:contain;filter:brightness(0) invert(1)}
+.footer-links{display:flex;gap:2rem;flex-wrap:wrap}
+.footer-links a{font-size:1.2rem;color:rgba(255,255,255,.55);transition:color .2s}
+.footer-links a:hover{color:rgba(255,255,255,.9)}
+.footer-copy{width:100%;font-size:1.1rem;color:rgba(255,255,255,.35);letter-spacing:.06em}
+@media(max-width:767px){
+  .site-footer-inner{flex-direction:column;align-items:flex-start;gap:1.6rem;padding:2.4rem 2rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ ヘッダー ============ -->
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="header-logo" href="../index.html">
+      <img src="../ロゴ画像素材/logo_famdpro.png" alt="FAMDSプロダクション">
+      <span class="header-logo-divider"></span>
+      <span class="header-logo-vfam">Vfam</span>
+    </a>
+    <nav class="header-nav">
+      <a href="../index.html">TOP</a>
+      <a href="talents.html" class="current">タレント</a>
+      <a href="../index.html#projects" class="pc-only">事業内容</a>
+      <a href="../famdsHP_audition/audition.html">オーディション</a>
+    </nav>
+  </div>
+  <div class="rainbow-line"></div>
+</header>
+
+<!-- ============ 本体（JSが描画） ============ -->
+<main id="detailRoot"></main>
+
+<!-- ============ フッター ============ -->
+<footer class="site-footer">
+  <div class="rainbow-line"></div>
+  <div class="site-footer-inner">
+    <a class="footer-logo" href="../index.html">
+      <img src="../ロゴ画像素材/logo_famdpro.png" alt="FAMDSプロダクション">
+    </a>
+    <nav class="footer-links">
+      <a href="../index.html">TOP</a>
+      <a href="talents.html">Vfam タレント一覧</a>
+      <a href="../index.html#projects">事業内容</a>
+      <a href="../famdsHP_audition/audition.html">オーディション</a>
+    </nav>
+    <p class="footer-copy">&copy; 2025 FAMDSプロダクション All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script src="talents.js"></script>
+<script>
+(function(){
+  var root = document.getElementById('detailRoot');
+
+  var SNS_META = [
+    { key:'youtube',   icon:'fa-brands fa-youtube',   label:'YouTube' },
+    { key:'x',         icon:'fa-brands fa-x-twitter', label:'X（旧Twitter）' },
+    { key:'tiktok',    icon:'fa-brands fa-tiktok',    label:'TikTok' },
+    { key:'instagram', icon:'fa-brands fa-instagram', label:'Instagram' }
+  ];
+
+  function getParam(name){
+    var m = new RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+    return m ? decodeURIComponent(m[1].replace(/\+/g,' ')) : null;
+  }
+
+  var id = getParam('id');
+  // id 未指定なら先頭のタレントを表示
+  var talent = id
+    ? VFAM_TALENTS.filter(function(t){ return t.id === id; })[0]
+    : VFAM_TALENTS[0];
+
+  if(!talent){
+    root.innerHTML =
+      '<div class="not-found">' +
+      '<h1>タレントが見つかりませんでした</h1>' +
+      '<p>URLをご確認ください。</p>' +
+      '<a href="talents.html"><i class="fa-solid fa-arrow-left"></i>タレント一覧へ戻る</a>' +
+      '</div>';
+    return;
+  }
+
+  document.title = talent.name + ' | Vfam（ぶいふぁむ）｜FAMDSプロダクション VTuber部門';
+
+  function esc(s){
+    return String(s == null ? '' : s)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;');
+  }
+
+  /* ---- SNSカード ---- */
+  function accountsHtml(){
+    return SNS_META.map(function(s){
+      var url = talent.sns ? talent.sns[s.key] : null;
+      if(url){
+        return '<a class="account-item ' + s.key + '" href="' + esc(url) + '" target="_blank" rel="noopener">' +
+               '<i class="' + s.icon + '"></i><span>' + s.label + '</span>' +
+               '<span class="account-note">開く</span></a>';
+      }
+      return '<span class="account-item ' + s.key + ' disabled">' +
+             '<i class="' + s.icon + '"></i><span>' + s.label + '</span>' +
+             '<span class="account-note">準備中</span></span>';
+    }).join('');
+  }
+
+  /* ---- 他のタレント ---- */
+  function othersHtml(){
+    var others = VFAM_TALENTS.filter(function(t){ return t.id !== talent.id; });
+    if(others.length === 0) return '';
+    return '<div class="other-talents">' +
+      '<h2 class="section-title">他のタレント</h2>' +
+      '<div class="other-talent-list">' +
+      others.map(function(t){
+        return '<a class="other-talent" href="talent.html?id=' + encodeURIComponent(t.id) + '">' +
+          '<span class="other-talent-icon"><img src="' + esc(t.iconImage) + '" alt="' + esc(t.name) + '"></span>' +
+          '<span><span class="other-talent-name">' + esc(t.name) + '</span>' +
+          '<span class="other-talent-ruby">' + esc(t.ruby || '') + '</span></span>' +
+          '</a>';
+      }).join('') +
+      '</div></div>';
+  }
+
+  var tagsHtml = (talent.tags || []).map(function(t){
+    return '<span class="talent-tag">#' + esc(t) + '</span>';
+  }).join('');
+
+  root.innerHTML =
+    '<article class="talent-detail" style="--theme:' + esc(talent.themeColor || '#4bb8e0') + '">' +
+
+      '<section class="upper-parts">' +
+        '<div class="contents-wrap">' +
+          '<a class="talent-list-link" href="talents.html">' +
+            '<i class="fa-solid fa-arrow-left"></i>タレント一覧' +
+          '</a>' +
+
+          '<div class="text-contents">' +
+            (talent.unit ? '<span class="talent-unit">' + esc(talent.unit) + '</span>' : '') +
+            '<h1 class="talent-name">' + esc(talent.name) + '</h1>' +
+            (talent.ruby   ? '<p class="talent-ruby">' + esc(talent.ruby) + '</p>' : '') +
+            (talent.enName ? '<p class="talent-en-name">' + esc(talent.enName) + '</p>' : '') +
+            (talent.catch  ? '<p class="talent-catch">' + esc(talent.catch) + '</p>' : '') +
+            '<p class="talent-description">' + esc(talent.description) + '</p>' +
+            (tagsHtml ? '<div class="talent-tags">' + tagsHtml + '</div>' : '') +
+          '</div>' +
+
+          '<div class="talent-photo">' +
+            '<div class="image-contents loading" id="standImage">' +
+              '<img src="' + esc(talent.standImage) + '" alt="' + esc(talent.name) + ' 立ち絵">' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
+      '</section>' +
+
+      '<section class="middle-parts">' +
+        '<div class="middle-inner">' +
+          '<h2 class="section-title">プロフィール</h2>' +
+          '<table class="profile-table">' +
+            '<tr><th>名前</th><td>' + esc(talent.name) +
+              (talent.ruby ? '（' + esc(talent.ruby) + '）' : '') + '</td></tr>' +
+            (talent.enName ? '<tr><th>英字表記</th><td>' + esc(talent.enName) + '</td></tr>' : '') +
+            (talent.unit   ? '<tr><th>所属</th><td>Vfam（ぶいふぁむ）／' + esc(talent.unit) + '</td></tr>' : '') +
+            (talent.debut  ? '<tr><th>デビュー</th><td>' + esc(talent.debut) + '</td></tr>' : '') +
+            ((talent.tags || []).length ? '<tr><th>配信内容</th><td>' + esc(talent.tags.join(' / ')) + '</td></tr>' : '') +
+            '<tr><th>イメージカラー</th><td>' + esc(talent.themeColor || '') + '</td></tr>' +
+          '</table>' +
+        '</div>' +
+      '</section>' +
+
+      '<section class="lower-parts">' +
+        '<div class="lower-inner">' +
+          '<h2 class="section-title">アカウント</h2>' +
+          '<div class="account-list">' + accountsHtml() + '</div>' +
+          othersHtml() +
+        '</div>' +
+      '</section>' +
+
+    '</article>';
+
+  // 立ち絵をふわっと表示（にじさんじの imageContents.loading 解除と同じ挙動）
+  var stand = document.getElementById('standImage');
+  if(stand){
+    var img = stand.querySelector('img');
+    var reveal = function(){ stand.classList.remove('loading'); };
+    if(img && img.complete){ setTimeout(reveal, 50); }
+    else if(img){ img.addEventListener('load', reveal); img.addEventListener('error', reveal); }
+  }
+})();
+</script>
+</body>
+</html>

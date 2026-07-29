@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <!-- 仮アイコン素材：正式な立ち絵アイコンが用意できたら差し替えてください -->
+  <defs>
+    <clipPath id="circle"><circle cx="200" cy="200" r="200"/></clipPath>
+  </defs>
+  <g clip-path="url(#circle)">
+    <rect width="400" height="400" fill="#eef7fb"/>
+    <!-- 頭 -->
+    <circle cx="200" cy="168" r="72" fill="#c9dee8"/>
+    <!-- 肩・胴 -->
+    <path d="M200 250c-66 0-120 44-132 104-3 15-4 30-4 46h272c0-16-1-31-4-46-12-60-66-104-132-104z" fill="#c9dee8"/>
+    <!-- 髪の毛のニュアンス -->
+    <path d="M200 96c-40 0-72 30-72 68 0 8 1 15 4 22 6-30 33-52 68-52s62 22 68 52c3-7 4-14 4-22 0-38-32-68-72-68z" fill="#b3cfdd"/>
+  </g>
+  <text x="200" y="372" font-family="'Noto Sans JP',sans-serif" font-size="26" font-weight="700"
+        fill="#7fa3b5" text-anchor="middle">NO IMAGE</text>
+</svg>

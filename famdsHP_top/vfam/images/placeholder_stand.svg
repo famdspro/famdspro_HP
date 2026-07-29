@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 900" width="520" height="900">
+  <!-- 仮立ち絵素材：正式な立ち絵が用意できたら差し替えてください -->
+  <g fill="#ffffff" opacity=".82">
+    <!-- 頭 -->
+    <circle cx="260" cy="150" r="96"/>
+    <!-- 首 -->
+    <rect x="238" y="236" width="44" height="46" rx="18"/>
+    <!-- 胴・スカート -->
+    <path d="M260 274c-58 0-104 34-118 88l-30 118h296l-30-118c-14-54-60-88-118-88z"/>
+    <path d="M120 490h280l44 196c3 14-7 26-21 26H97c-14 0-24-12-21-26z"/>
+    <!-- 脚 -->
+    <rect x="204" y="708" width="42" height="150" rx="20"/>
+    <rect x="274" y="708" width="42" height="150" rx="20"/>
+  </g>
+  <!-- 髪のシルエット -->
+  <path d="M260 46c-54 0-96 42-96 96 0 12 2 23 6 33 9-40 45-70 90-70s81 30 90 70c4-10 6-21 6-33 0-54-42-96-96-96z"
+        fill="#ffffff" opacity=".95"/>
+  <text x="260" y="884" font-family="'Noto Sans JP',sans-serif" font-size="30" font-weight="700"
+        fill="#ffffff" opacity=".8" text-anchor="middle">NO IMAGE（立ち絵準備中）</text>
+</svg>
